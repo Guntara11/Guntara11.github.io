@@ -1,0 +1,22 @@
+.container{
+	width: 800px;
+	margin-top: 50px;
+	background-color: white;
+	padding: 20px;
+	text-transform: uppercase;
+	text-align: left;
+	letter-spacing:2px;
+	font-family: "Roboto",sans-serif;
+
+}
+
+
+.header{
+	margin-left: 100px;
+}
+
+.hero{
+	height: 450px;
+	background-image: url("../image/header.jpg");
+	background-size: cover;
+}
