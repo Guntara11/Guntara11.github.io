@@ -1,0 +1,40 @@
+---
+layout: base.njk
+---
+<section class="hero">
+  <h1>I build devices that have to keep working when nobody is watching.</h1>
+  <p>Control panels in greenhouses, sensor nodes in water tanks, scanners in doorways — and, in my day job, the SIM and eSIM products that connect things like them to a network.</p>
+  <p class="now">These are write-ups of what I built, what it cost, and what I got wrong.</p>
+  <div class="readout">
+    <div>Now<b>Senior QA Engineer, IDEMIA</b></div>
+    <div>Builds<b>ESP32 · FreeRTOS · MQTT · BLE</b></div>
+    <div>Validates<b>UICC / eUICC · GSMA RSP</b></div>
+    <div>Based in<b>{{ site.location }}</b></div>
+  </div>
+</section>
+
+<div class="index-head">
+  <h2>Projects</h2>
+  <span>{{ collections.projects.length }} write-ups</span>
+</div>
+<ul class="project-list">
+{% for p in collections.projects %}
+  <li>
+    <a class="project-row" href="{{ p.url | url }}">
+      <div>
+        <h3 class="project-title">{{ p.data.title }}</h3>
+        <p class="project-sub">{{ p.data.resultShort }}</p>
+        <div class="project-meta">
+          <span>{{ p.data.year }}</span>
+          <span>{{ p.data.role }}</span>
+          <span>{{ p.data.stack | join(" · ") }}</span>
+        </div>
+      </div>
+      <svg class="trace" viewBox="0 0 220 48" aria-hidden="true" preserveAspectRatio="none">
+        <line class="axis" x1="0" y1="47" x2="220" y2="47"/>
+        <path d="{{ traces[p.data.trace] }}"/>
+      </svg>
+    </a>
+  </li>
+{% endfor %}
+</ul>
