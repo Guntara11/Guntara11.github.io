@@ -1,15 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Projects — Ega Guntara</title>
-<meta name="description" content="Ega Guntara — Senior QA Engineer at IDEMIA building IoT and embedded systems. Portfolio: UICC/eUICC testing, test automation tools, ESP32 and Raspberry Pi projects.">
-<meta property="og:title" content="Projects — Ega Guntara">
-<meta property="og:description" content="Ega Guntara — Senior QA Engineer at IDEMIA building IoT and embedded systems. Portfolio: UICC/eUICC testing, test automation tools, ESP32 and Raspberry Pi projects.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<meta content="Ega Guntara — Senior QA Engineer at IDEMIA building IoT and embedded systems. Portfolio: UICC/eUICC testing, test automation tools, ESP32 and Raspberry Pi projects." name="description"/>
+<meta content="Projects — Ega Guntara" property="og:title"/>
+<meta content="Ega Guntara — Senior QA Engineer at IDEMIA building IoT and embedded systems. Portfolio: UICC/eUICC testing, test automation tools, ESP32 and Raspberry Pi projects." property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
 body{margin:0;background:#F3F5F4}
 a{color:#1F4D3A}a:hover{color:#A65A1B}
@@ -23,133 +24,126 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 </head>
 <body>
 <div style="background: #F3F5F4; color: #18221D; font-family: 'Work Sans', sans-serif; min-height: 100vh">
-  <header style="max-width: 1160px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
-    <a href="index.html" style="font-family: 'Fraunces', serif; font-weight: 800; font-size: 22px; color: #1F4D3A; text-decoration: none">Ega Guntara</a>
-    <a href="index.html" style="font-size: 15px; font-weight: 500">← Back to the story</a>
-  </header>
-
-  <section style="max-width: 1160px; margin: 0 auto; padding: 64px 24px 56px">
-    <p style="margin: 0 0 20px; font-size: 15px; font-weight: 600; color: #A65A1B; letter-spacing: 0.1em">ALL PROJECTS</p>
-    <h1 style="margin: 0; font-family: 'Fraunces', serif; font-size: clamp(48px, 6.5vw, 96px); line-height: 1; font-weight: 600; letter-spacing: -0.02em; color: #1F4D3A; max-width: 980px">Every project started with <i style="font-weight: 400; color: #A65A1B">something that didn't work.</i></h1>
-    <p style="margin: 28px 0 0; font-size: 20px; line-height: 1.6; color: #34423B; max-width: 720px">Here are eleven of them — the problem, what I built, and what changed. Four come from my QA work at IDEMIA; seven are IoT and hardware builds with my team.</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px">
-      <a href="#work" style="background: #1F4D3A; color: #FFFFFF; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px">At work · 4</a>
-      <a href="#field" style="border: 1.5px solid #A65A1B; color: #8A4A14; padding: 12px 21px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px">In the field · 7</a>
-    </div>
-  </section>
-
-  <section id="work" style="background: #FFFFFF">
-    <div style="max-width: 1160px; margin: 0 auto; padding: 80px 24px">
-      <p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #1F4D3A">PART ONE</p>
-      <h2 style="margin: 8px 0 12px; font-family: 'Fraunces', serif; font-size: 44px; font-weight: 600; color: #1F4D3A">At work: tools that fixed slow testing</h2>
-      <p style="margin: 0 0 40px; font-size: 16px; color: #4A5A52">Internal IDEMIA tools · I can describe them publicly, but the source code stays private.</p>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr)); gap: 24px">
-        <article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
-          <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">NVM Endurance Automation</h3>
-          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
-            <p style="margin: 0"><b style="color: #A65A1B">The problem.</b> SIM endurance tests needed a person to cycle modems by hand for hours.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A Python tool that drives the modem over AT commands for 24 hours: 5G auth, hourly 4G switch, reset every four hours.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> Tests now run overnight and on weekends. It's used in about 90% of NVM projects.</p>
-          </div>
-          <p style="margin: 0; font-size: 14px; color: #4A5A52">Python · pyserial · AT commands</p>
-        </article>
-        <article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
-          <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">eUICC Provisioning Tool</h3>
-          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
-            <p style="margin: 0"><b style="color: #A65A1B">The problem.</b> Provisioning eSIM profiles meant hand-editing XML in SOAP UI and copying transaction IDs between calls.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A Django app with one-click create → provision → commit on SM-DP, AID management on SM-SR and guard rails.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> It's now the team's main way to provision ICCIDs.</p>
-          <a href="projects/euicc-provisioning-tool/" style="align-self:flex-start;margin-top:4px;font-weight:600;font-size:15px;text-decoration:none;color:#F2C48D;border-bottom:2px solid #F2C48D;padding-bottom:2px">Read the write-up →</a></div>
-          <p style="margin: 0; font-size: 14px; color: #4A5A52">Django · PostgreSQL · SOAP / REST · LDAP</p>
-        </article>
-        <article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
-          <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">OBTANA Web</h3>
-          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
-            <p style="margin: 0"><b style="color: #A65A1B">The problem.</b> Sending an OTA SMS update required a 2G handset at your desk — and there weren't enough.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A web service with handsets on the server, one MQTT topic per handset and a Redis queue for busy moments.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> Any tester can send OTA updates from any desk.</p>
-          <a href="projects/obtana/" style="align-self:flex-start;margin-top:4px;font-weight:600;font-size:15px;text-decoration:none;color:#F2C48D;border-bottom:2px solid #F2C48D;padding-bottom:2px">Read the write-up →</a></div>
-          <p style="margin: 0; font-size: 14px; color: #4A5A52">Flask · MQTT · Redis · MongoDB</p>
-        </article>
-        <article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
-          <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">NVM Script Editor</h3>
-          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
-            <p style="margin: 0"><b style="color: #A65A1B">The problem.</b> Turning a COMPRION log into a runnable test script took one to two days of manual work.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A Streamlit tool that converts logs to .pcom scripts, checks the M2M flow and applies TLS-PSK edits.</p>
-            <p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> The same job now takes minutes.</p>
-          <a href="projects/nvm-script-editor/" style="align-self:flex-start;margin-top:4px;font-weight:600;font-size:15px;text-decoration:none;color:#F2C48D;border-bottom:2px solid #F2C48D;padding-bottom:2px">Read the write-up →</a></div>
-          <p style="margin: 0; font-size: 14px; color: #4A5A52">Streamlit · LDAPS · Docker</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="field" style="max-width: 1160px; margin: 0 auto; padding: 80px 24px">
-    <p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">PART TWO</p>
-    <h2 style="margin: 8px 0 40px; font-family: 'Fraunces', serif; font-size: 44px; font-weight: 600; color: #1F4D3A">In the field: things that run in the real world</h2>
-
-    <article style="display: flex; flex-wrap: wrap; background: #1F4D3A; color: #FFFFFF; margin-bottom: 24px">
-      <div style="flex: 1 1 420px; min-height: 340px; background: #2E5E49; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #CFE0D7;padding:0;overflow:hidden"><img src="projects/smart-greenhouse/image-6.png" alt="Assembled greenhouse control panel" style="width:100%;height:100%;object-fit:cover"></div>
-      <div style="flex: 1 1 420px; padding: 40px; display: flex; flex-direction: column; gap: 16px; min-width: 0">
-        <span style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #F2C48D">FEATURED · CLIENT PROJECT · 2024</span>
-        <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 38px; font-weight: 600; line-height: 1.1">Smart Greenhouse Subang</h3>
-        <p style="margin: 0; font-size: 16px; line-height: 1.6"><b style="color: #F2C48D">The problem.</b> Farmers' automation went dark whenever the internet dropped, and nothing measured light or CO2.</p>
-        <p style="margin: 0; font-size: 16px; line-height: 1.6"><b style="color: #F2C48D">What I built.</b> As project lead: a control panel with manual fallback and a network watchdog, a CO2 + light sensor node, and a motorized shading net. I designed the panel and co-wrote both firmwares.</p>
-        <p style="margin: 0; font-size: 16px; line-height: 1.6"><b style="color: #F2C48D">What changed.</b> It runs at five greenhouse locations today, used by farmers every day.</p>
-        <p style="margin: 0; font-size: 14px; color: #CFE0D7">ESP32 · FreeRTOS · custom TCP protocol · Telegram</p>
-      <a href="projects/smart-greenhouse/" style="align-self:flex-start;margin-top:4px;font-weight:600;font-size:15px;text-decoration:none;color:#F2C48D;border-bottom:2px solid #F2C48D;padding-bottom:2px">Read the write-up →</a></div>
-    </article>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 24px">
-      <article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">CLIENT · PROJECT LEAD</span>
-        <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Voltage &amp; Current Monitor</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">Sixteen power sensor lines flowing into a live dashboard with filtering, CSV export and over-current alerts on Telegram. Passed 12 functional and 9 edge-case tests.</p>
-        <p style="margin: 0; font-size: 13px; color: #4A5A52">MQTT · MongoDB · Dash/Plotly</p>
-      </article>
-      <article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">CLIENT PROTOTYPE · LEAD</span>
-        <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">BLE Device Tracker</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">A Raspberry Pi that notices registered BLE devices coming and going, counts them per minute and reports to a server. Passing with three devices at once.</p>
-        <p style="margin: 0; font-size: 13px; color: #4A5A52">Raspberry Pi · Python · FTP · <a href="https://github.com/Guntara11/indoor_localization">repo</a></p>
-      </article>
-      <article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">TEAM R&amp;D · HARDWARE</span>
-        <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Smart Plug</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">My own ESP32-C3 schematic and PCB, with relay control, power metering and phone-based quick pairing. Built so the team could practice real hardware work.</p>
-        <p style="margin: 0; font-size: 13px; color: #4A5A52">ESP32-C3 · ESP-IDF · MQTT/TLS</p>
-      </article>
-      <article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">PERSONAL · WITH A TEAMMATE</span>
-        <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Flood &amp; Tank Monitor</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">A touch panel at home that shows flood and water-tank levels every ten seconds — running with a real tank and flood spot.</p>
-        <p style="margin: 0; font-size: 13px; color: #4A5A52">ESP32-P4 · LVGL · MQTT</p>
-      </article>
-      <article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">TEAM R&amp;D · HARDWARE ENGINEER</span>
-        <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Eye-Beacon</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">A six-person research prototype that counts people and recognizes staff by phone beacon. I built the device: PCB, camera and enclosure.</p>
-        <p style="margin: 0; font-size: 13px; color: #4A5A52">Pi Zero 2W · custom PCB · BLE</p>
-      </article>
-      <article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
-        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">OPEN SOURCE · SOLO</span>
-        <h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">EspOTAUpdate</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">Updating devices in the field shouldn't need a trip. Bump the version, push, and ESP32s fetch new firmware from GitHub Pages.</p>
-        <p style="margin: 0; font-size: 13px; color: #4A5A52">ESP32 · GitHub Pages · <a href="https://github.com/Guntara11">repo</a></p>
-      </article>
-    </div>
-  </section>
-
-  <section style="background: #FFFFFF">
-    <div style="max-width: 860px; margin: 0 auto; padding: 80px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px">
-      <h2 style="margin: 0; font-family: 'Fraunces', serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.05; font-weight: 600; color: #1F4D3A">What would we build next?</h2>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
-        <a href="mailto:ega.guntara394@gmail.com" style="background: #1F4D3A; color: #FFFFFF; padding: 16px 26px; border-radius: 999px; text-decoration: none; font-weight: 600">Email me</a>
-        <a href="index.html" style="border: 1.5px solid #1F4D3A; padding: 15px 25px; border-radius: 999px; text-decoration: none; font-weight: 600">Back to the story</a>
-      </div>
-    </div>
-  </section>
+<header style="max-width: 1160px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+<a href="index.html" style="font-family: 'Fraunces', serif; font-weight: 800; font-size: 22px; color: #1F4D3A; text-decoration: none">Ega Guntara</a>
+<a href="index.html" style="font-size: 15px; font-weight: 500">← Back to the story</a>
+</header>
+<section style="max-width: 1160px; margin: 0 auto; padding: 64px 24px 56px">
+<p style="margin: 0 0 20px; font-size: 15px; font-weight: 600; color: #A65A1B; letter-spacing: 0.1em">ALL PROJECTS</p>
+<h1 style="margin: 0; font-family: 'Fraunces', serif; font-size: clamp(48px, 6.5vw, 96px); line-height: 1; font-weight: 600; letter-spacing: -0.02em; color: #1F4D3A; max-width: 980px">Every project started with <i style="font-weight: 400; color: #A65A1B">something that didn't work.</i></h1>
+<p style="margin: 28px 0 0; font-size: 20px; line-height: 1.6; color: #34423B; max-width: 720px">Here are eleven of them — the problem, what I built, and what changed. Four come from my QA work at IDEMIA; seven are IoT and hardware builds with my team.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px">
+<a href="#work" style="background: #1F4D3A; color: #FFFFFF; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px">At work · 4</a>
+<a href="#field" style="border: 1.5px solid #A65A1B; color: #8A4A14; padding: 12px 21px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px">In the field · 7</a>
+</div>
+</section>
+<section id="work" style="background: #FFFFFF">
+<div style="max-width: 1160px; margin: 0 auto; padding: 80px 24px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #1F4D3A">PART ONE</p>
+<h2 style="margin: 8px 0 12px; font-family: 'Fraunces', serif; font-size: 44px; font-weight: 600; color: #1F4D3A">At work: tools that fixed slow testing</h2>
+<p style="margin: 0 0 40px; font-size: 16px; color: #4A5A52">Internal IDEMIA tools · I can describe them publicly, but the source code stays private.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr)); gap: 24px">
+<article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">NVM Endurance Automation</h3>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
+<p style="margin: 0"><b style="color: #A65A1B">The problem.</b> SIM endurance tests needed a person to cycle modems by hand for hours.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A Python tool that drives the modem over AT commands for 24 hours: 5G auth, hourly 4G switch, reset every four hours.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> Tests now run overnight and on weekends. It's used in about 90% of NVM projects.</p>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4A5A52">Python · pyserial · AT commands</p>
+</article>
+<article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">eUICC Provisioning Tool</h3>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
+<p style="margin: 0"><b style="color: #A65A1B">The problem.</b> Provisioning eSIM profiles meant hand-editing XML in SOAP UI and copying transaction IDs between calls.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A Django app with one-click create → provision → commit on SM-DP, AID management on SM-SR and guard rails.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> It's now the team's main way to provision ICCIDs.</p>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4A5A52">Django · PostgreSQL · SOAP / REST · LDAP</p>
+<a href="projects/euicc-provisioning-tool/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a></article>
+<article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">OBTANA Web</h3>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
+<p style="margin: 0"><b style="color: #A65A1B">The problem.</b> Sending an OTA SMS update required a 2G handset at your desk — and there weren't enough.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A web service with handsets on the server, one MQTT topic per handset and a Redis queue for busy moments.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> Any tester can send OTA updates from any desk.</p>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4A5A52">Flask · MQTT · Redis · MongoDB</p>
+<a href="projects/obtana/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a></article>
+<article style="background: #F3F5F4; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">NVM Script Editor</h3>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6">
+<p style="margin: 0"><b style="color: #A65A1B">The problem.</b> Turning a COMPRION log into a runnable test script took one to two days of manual work.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What I built.</b> A Streamlit tool that converts logs to .pcom scripts, checks the M2M flow and applies TLS-PSK edits.</p>
+<p style="margin: 0"><b style="color: #1F4D3A">What changed.</b> The same job now takes minutes.</p>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4A5A52">Streamlit · LDAPS · Docker</p>
+<a href="projects/nvm-script-editor/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a></article>
+</div>
+</div>
+</section>
+<section id="field" style="max-width: 1160px; margin: 0 auto; padding: 80px 24px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">PART TWO</p>
+<h2 style="margin: 8px 0 40px; font-family: 'Fraunces', serif; font-size: 44px; font-weight: 600; color: #1F4D3A">In the field: things that run in the real world</h2>
+<article style="display: flex; flex-wrap: wrap; background: #1F4D3A; color: #FFFFFF; margin-bottom: 24px">
+<div style="flex: 1 1 420px; min-height: 340px; background: #2E5E49; display: flex; align-items: center; justify-content: center; padding: 0; overflow: hidden; position: relative; min-width: 0"><img alt="The assembled greenhouse control panel" loading="lazy" src="projects/smart-greenhouse/image-6.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block"/></div>
+<div style="flex: 1 1 420px; padding: 40px; display: flex; flex-direction: column; gap: 16px; min-width: 0">
+<span style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #F2C48D">FEATURED · CLIENT PROJECT · 2024</span>
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 38px; font-weight: 600; line-height: 1.1">Smart Greenhouse Subang</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6"><b style="color: #F2C48D">The problem.</b> Farmers' automation went dark whenever the internet dropped, and nothing measured light or CO2.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.6"><b style="color: #F2C48D">What I built.</b> As project lead: a control panel with manual fallback and a network watchdog, a CO2 + light sensor node, and a motorized shading net. I designed the panel and co-wrote both firmwares.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.6"><b style="color: #F2C48D">What changed.</b> It runs at five greenhouse locations today, used by farmers every day.</p>
+<p style="margin: 0; font-size: 14px; color: #CFE0D7">ESP32 · FreeRTOS · custom TCP protocol · Telegram</p>
+<a href="projects/smart-greenhouse/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a></div>
+</article>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 24px">
+<article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">CLIENT · PROJECT LEAD</span>
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Voltage &amp; Current Monitor</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">Sixteen power sensor lines flowing into a live dashboard with filtering, CSV export and over-current alerts on Telegram. Passed 12 functional and 9 edge-case tests.</p>
+<p style="margin: 0; font-size: 13px; color: #4A5A52">MQTT · MongoDB · Dash/Plotly</p>
+<a href="projects/voltage-current-monitor/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a><a href="projects/voltage-current-monitor/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a></article>
+<article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">CLIENT PROTOTYPE · LEAD</span>
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">BLE Device Tracker</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">A Raspberry Pi that notices registered BLE devices coming and going, counts them per minute and reports to a server. Passing with three devices at once.</p>
+<p style="margin: 0; font-size: 13px; color: #4A5A52">Raspberry Pi · Python · FTP · <a href="https://github.com/Guntara11/indoor_localization">repo</a></p>
+<a href="projects/ble-device-tracker/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a></article>
+<article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">TEAM R&amp;D · HARDWARE</span>
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Smart Plug</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">My own ESP32-C3 schematic and PCB, with relay control, power metering and phone-based quick pairing. Built so the team could practice real hardware work.</p>
+<p style="margin: 0; font-size: 13px; color: #4A5A52">ESP32-C3 · ESP-IDF · MQTT/TLS</p>
+</article>
+<article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">PERSONAL · WITH A TEAMMATE</span>
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Flood &amp; Tank Monitor</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">A touch panel at home that shows flood and water-tank levels every ten seconds — running with a real tank and flood spot.</p>
+<p style="margin: 0; font-size: 13px; color: #4A5A52">ESP32-P4 · LVGL · MQTT</p>
+<a href="projects/flood-tank-monitor/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a><a href="projects/flood-tank-monitor/" style="align-self:flex-start;margin-top:6px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:3px">Read the write-up →</a></article>
+<article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">TEAM R&amp;D · HARDWARE ENGINEER</span>
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">Eye-Beacon</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">A six-person research prototype that counts people and recognizes staff by phone beacon. I built the device: PCB, camera and enclosure.</p>
+<p style="margin: 0; font-size: 13px; color: #4A5A52">Pi Zero 2W · custom PCB · BLE</p>
+</article>
+<article style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #A65A1B">OPEN SOURCE · SOLO</span>
+<h3 style="margin: 0; font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600">EspOTAUpdate</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #34423B">Updating devices in the field shouldn't need a trip. Bump the version, push, and ESP32s fetch new firmware from GitHub Pages.</p>
+<p style="margin: 0; font-size: 13px; color: #4A5A52">ESP32 · GitHub Pages · <a href="https://github.com/Guntara11">repo</a></p>
+</article>
+</div>
+</section>
+<section style="background: #FFFFFF">
+<div style="max-width: 860px; margin: 0 auto; padding: 80px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px">
+<h2 style="margin: 0; font-family: 'Fraunces', serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.05; font-weight: 600; color: #1F4D3A">What would we build next?</h2>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+<a href="mailto:ega.guntara394@gmail.com" style="background: #1F4D3A; color: #FFFFFF; padding: 16px 26px; border-radius: 999px; text-decoration: none; font-weight: 600">Email me</a>
+<a href="index.html" style="border: 1.5px solid #1F4D3A; padding: 15px 25px; border-radius: 999px; text-decoration: none; font-weight: 600">Back to the story</a>
+</div>
+</div>
+</section>
 </div>
 </body>
-</html><a href="projects/voltage-current-monitor/" style="align-self:flex-start;margin-top:4px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:2px">Read the write-up →</a><a href="projects/flood-tank-monitor/" style="align-self:flex-start;margin-top:4px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:2px">Read the write-up →</a><a href="projects/ble-device-tracker/" style="align-self:flex-start;margin-top:4px;font-weight:600;font-size:15px;text-decoration:none;color:#1F4D3A;border-bottom:2px solid #1F4D3A;padding-bottom:2px">Read the write-up →</a>
+</html>
