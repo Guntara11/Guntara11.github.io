@@ -1,0 +1,173 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Second, Sixteen Lines, and Half a Pipeline — Ega Guntara</title>
+<meta name="description" content="Problem  A power plant needed live line impedance plotted against its protection zones within one second, on a pipeline where only half was visible to us.    What I built  As s">
+<meta property="og:title" content="One Second, Sixteen Lines, and Half a Pipeline — Ega Guntara">
+<meta property="og:description" content="Problem  A power plant needed live line impedance plotted against its protection zones within one second, on a pipeline where only half was visible to us.    What I built  As s">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+:root{--green:#1F4D3A;--rust:#A65A1B;--cream:#F3F5F4;--ink:#18221D;--soft:#34423B;--line:#DCE4DF}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Work Sans',system-ui,sans-serif;font-size:18px;line-height:1.75}
+img{max-width:100%;display:block}
+a{color:var(--green)} a:hover{color:var(--rust)}
+a:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+header.site{max-width:1160px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header.site .nm{font-family:'Fraunces',serif;font-weight:800;font-size:22px;color:var(--green);text-decoration:none}
+header.site a.back{font-size:15px;font-weight:500;text-decoration:none}
+.masthead{max-width:820px;margin:0 auto;padding:40px 24px 8px}
+.eyebrow{margin:0 0 18px;font-size:14px;font-weight:600;color:var(--rust);letter-spacing:.1em;text-transform:uppercase}
+h1.title{margin:0;font-family:'Fraunces',serif;font-size:clamp(36px,5.4vw,64px);line-height:1.04;font-weight:600;letter-spacing:-.02em;color:var(--green)}
+.deck{margin:20px 0 0;font-size:21px;line-height:1.55;color:var(--soft)}
+.summary{max-width:820px;margin:34px auto 0;padding:0 24px}
+.summary .box{background:#fff;border-left:4px solid var(--rust);padding:22px 26px;display:grid;gap:14px}
+.summary b{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);margin-bottom:3px}
+.summary p{margin:0;font-size:17px;line-height:1.6}
+article{max-width:820px;margin:0 auto;padding:10px 24px 80px}
+article h2{font-family:'Fraunces',serif;font-size:clamp(26px,3.3vw,36px);line-height:1.2;font-weight:600;color:var(--green);margin:52px 0 14px;letter-spacing:-.01em}
+article h3{font-family:'Fraunces',serif;font-size:23px;font-weight:600;margin:34px 0 10px;color:var(--ink)}
+article p{margin:0 0 20px}
+article ul,article ol{margin:0 0 20px;padding-left:24px}
+article li{margin-bottom:9px}
+article blockquote{margin:28px 0;padding:4px 0 4px 22px;border-left:3px solid var(--line);color:var(--soft);font-family:'Fraunces',serif;font-size:21px;line-height:1.5}
+article code{background:#e9ede9;padding:1px 6px;border-radius:3px;font-size:.88em}
+article pre{background:#fff;border:1px solid var(--line);padding:16px;overflow:auto}
+article pre code{background:none;padding:0}
+article hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+article table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:16px;background:#fff}
+article th,article td{border:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top}
+article th{background:#eef2ef;font-weight:600}
+figure{margin:34px 0}
+figure img{width:100%;background:#fff;border:1px solid var(--line)}
+figcaption{margin-top:10px;font-size:15px;color:var(--soft)}
+.pending{background:#fff;border:1px dashed #b9c6bd;padding:40px 24px;text-align:center;color:#7c8a81;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.tags{max-width:820px;margin:0 auto;padding:0 24px 50px;color:var(--soft);font-size:15px}
+footer.site{background:var(--green);color:#fff;padding:54px 24px}
+footer.site .in{max-width:820px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:center}
+footer.site a{color:#fff}
+footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:600}
+@media(max-width:640px){body{font-size:17px}}
+</style></head><body>
+<header class="site"><a class="nm" href="../../index.html">Ega Guntara</a><a class="back" href="../../projects.html">← All projects</a></header>
+<div class="masthead"><p class="eyebrow">Project write-up</p><h1 class="title">One Second, Sixteen Lines, and Half a Pipeline</h1><p class="deck">Monitoring Voltage &amp; Current System, Version 1 — live line impedance against distance-relay protection zones</p></div><div class="summary"><div class="box"><div><b>Problem</b><p>A power plant needed live line impedance plotted against its protection zones within one second, on a pipeline where only half was visible to us.</p></div><div><b>What I built</b><p>As system architect, an MQTT pipeline from 16 sensors (64 data streams), impedance calculation with residual compensation, MongoDB storage and a Dash dashboard.</p></div><div><b>Result</b><p>Six impedances per line, editable protection zones, and 12 functional plus 9 negative test cases passed.</p></div></div></div><article><figure><img src="image.png" alt="monitoring voltage &amp; current system: version 1"><figcaption>Monitoring Voltage &amp; Current System: Version 1</figcaption></figure>
+<hr />
+<h2>Background</h2>
+<p>Most monitoring projects begin with someone who can't see something. This one began with a number.</p>
+<p><strong>One second.</strong> From the sensor on the line to a plotted point on the screen, in under one second. In Python, because Python was what the client's environment ran and what their engineers could maintain after we left.</p>
+<p>That would be a reasonable ask if we owned the whole pipeline. We didn't. The client owned the measurement chain — the power sensors on each line, the RS-485 to TCP/IP converters, the routing into their EWS server. All of it already built, none of it ours to modify, and none of it instrumented in a way we could see into.</p>
+<p>So the real brief was: hit a one-second end-to-end budget on a pipeline where you control the back half and can't measure the front half. Almost every decision in this article traces back to that.</p>
+<h2>My Role</h2>
+<ul>
+<li><strong>Ega Guntara</strong> — Project Lead, IoT Engineer, System Architect</li>
+<li><strong>Dede Sopian</strong> — Support &amp; Testing</li>
+</ul>
+<p>Built under <strong>Aligness</strong>. The client is a power plant and remains confidential throughout.</p>
+<h2>Case Study</h2>
+<p>A power line is protected by a <strong>distance relay</strong>. It decides whether a fault has occurred by measuring the impedance it sees looking down the line, and its settings define three zones: Zone 1 covering most of the protected line and tripping instantly, Zones 2 and 3 reaching further with deliberate time delays so that they act as backup.</p>
+<p>Those zones get configured once at commissioning, and then trusted for years.</p>
+<p>Meanwhile the impedance the line actually presents moves around all day with load. Nobody watches where it sits relative to those boundaries. The settings are a static document; the line is a live thing.</p>
+<p>So the system we were asked to build isn't really a monitoring dashboard. It's this:</p>
+<blockquote>
+<p>Live measured impedance for each line, plotted against the configured protection zones.</p>
+</blockquote>
+<p>Not <em>here are your volts and amps</em>, but <em>here is how much margin you actually have, right now, against settings someone chose two years ago.</em></p>
+<p>The scale is easy to undersell. There were <strong>16 line sensors</strong>, each exposing <strong>four addresses</strong>:</p>
+<ul>
+<li><strong>Line magnitude</strong> — frequency, three phase voltages plus average, three line-to-line voltages plus average, three phase currents plus average, neutral current. Fourteen values.</li>
+<li><strong>Line angle</strong> — phase angles for three voltages and three currents.</li>
+<li><strong>Voltage harmonics</strong> — 3rd and 5th per phase.</li>
+<li><strong>Current harmonics</strong> — 3rd and 5th per phase.</li>
+</ul>
+<p>Sixty-four concurrent streams, all of which had to be current on screen, alongside two live impedance plots.</p>
+<figure><img src="image-1.png" alt="The sixteen monitored lines"><figcaption>Sixteen lines, four values each — sixty-four concurrent streams.</figcaption></figure>
+<h2>Workflow</h2>
+<p>The scope split was explicit from the start. <strong>The client's scope</strong> ran from the sensor to the EWS server. <strong>Our scope</strong> was everything after that:</p>
+<ol>
+<li>Publish the retrieved data to an MQTT broker</li>
+<li>Set up the broker on the server PC</li>
+<li>Subscribe and retrieve</li>
+<li>Store to a database</li>
+<li>Apply the client's formulas — the step we called <strong>Line Processing Data</strong></li>
+<li>Build the web dashboard: values, plots, and the parameters feeding the formulas</li>
+<li>Allow those parameters to be changed live, from the dashboard</li>
+<li>Export calculated line data to CSV</li>
+</ol>
+<figure><img src="mvcs-1-architecture.png" alt="System architecture"><figcaption>Workflow of Monitoring Voltage &amp; Current System: Version 1</figcaption></figure>
+<h2>Building The System</h2>
+<p>Four things worth elaborating: the <strong>Line Processing Data</strong> maths, the <strong>Zone Characteristic</strong>, the <strong>one-second pipeline</strong>, and the <strong>live parameter editing</strong> that turns a demo into a tool.</p>
+<h3>Line Processing Data — Why You Can't Just Divide V by I</h3>
+<p>This is the part of the project that justifies the project.</p>
+<p>For a <strong>phase-to-phase</strong> fault the obvious formula works. Take the difference of two phase voltages over the difference of the two phase currents:</p>
+<pre><code>Z_AB = (V_A − V_B) / (I_A − I_B)
+</code></pre>
+<p>For a <strong>phase-to-ground</strong> fault it doesn't, and this is the trap. The return path goes through earth, and earth has a different impedance than the phase conductor. Dividing phase voltage by phase current gives you a number that looks entirely plausible and is systematically wrong — which is the worst kind of wrong, because nothing about the output tells you it's incorrect.</p>
+<p>The correction is <strong>residual compensation</strong>. From the ratio of zero-sequence to positive-sequence impedance, which the client supplies per line as a magnitude and an angle:</p>
+<pre><code>k0 = (Z0 / Z1) − 1
+n0 = k0 / 3
+Z_A = V_A / (I_A + n0 · I_N)
+</code></pre>
+<p>where <code>I_N</code> is the residual current.</p>
+<p>Everything upstream exists to feed this. Magnitudes and angles arrive on separate topics, get converted from polar to rectangular, get assembled into complex numbers, and only then can the compensated division happen. Six complex quantities per line — three voltages, three currents — produce six impedances: <strong>ZA, ZB, ZC</strong> for the ground loops and <strong>ZAB, ZBC, ZCA</strong> for the phase loops.</p>
+<p>It's roughly forty lines of Python. Anyone can plot a voltage. Knowing that a ground fault returns through earth, and that this changes the denominator, is the part that took domain reading rather than coding.</p>
+<p>One note for completeness: in this build <code>I_N</code> is carried as a value the client supplies rather than derived inside our calculation, so the summation path exists in the source but isn't the one in use. It's worth naming because it sits in the denominator of every ground-loop result.</p>
+<h3>The Zone Characteristic</h3>
+<figure><img src="mvcs-3-zone-characteristic.png" alt="Quadrilateral zone characteristic"><figcaption>What a quadrilateral zone is, before the real plots.</figcaption></figure>
+<figure><img src="image-2.png" alt="Phase-to-ground zone plot"></figure>
+<figure><img src="image-3.png" alt="phase-to-gnd and phase-to-phase zone characteristics"><figcaption>Phase-to-Gnd and Phase-to-Phase zone characteristics</figcaption></figure>
+<p>Each line's protection zones are stored as a <strong>quadrilateral characteristic</strong> — the shape a modern distance relay actually uses, rather than the circular mho characteristic of older designs.</p>
+<p>A zone is defined by its <strong>resistive reach</strong> (RGZ for ground, RPZ for phase) and <strong>reactive reach</strong> (XGZ, XPZ), plus the line angle, which at this plant was <strong>75°</strong>. From those, the system derives the corners: the reach point along the line angle, the top-right corner at reach plus resistive reach, and the lower boundary rotated by the line angle. Three zones, two characteristics per line, sixteen lines.</p>
+<p>Those geometries are computed and stored, then redrawn whenever the parameters change — which is what makes the parameter editor matter rather than being a convenience.</p>
+<p>One cosmetic defect worth owning: the plot axes are labelled Voltage and Current, inherited from an early prototype that plotted raw measurements. They show resistance and reactance. The data is right; the labels are a leftover.</p>
+<h3>The One-Second Pipeline</h3>
+<figure><img src="mvcs-2-pipeline.png" alt="The one-second pipeline"><figcaption>Where the impedance actually gets computed — and why the honest latency is one to two seconds.</figcaption></figure>
+<p>The architecture is deliberately boring, and that was the point.</p>
+<p><strong>Four MQTT topics</strong>, one per address type — magnitude, angle, voltage harmonics, current harmonics. Splitting by type rather than by line means a subscriber that only cares about harmonics never parses magnitudes, and each payload stays small. In production the broker runs locally on the server PC.</p>
+<p>The subscriber holds the latest frame per topic, runs Line Processing Data as messages arrive, and writes to <strong>MongoDB</strong>. Three collections: <strong>Params</strong> for raw timestamped measurements, <strong>Line_Params</strong> for the per-line configuration, <strong>LINE</strong> for computed zone geometry.</p>
+<p>The dashboard is <strong>Dash</strong>, polling on a one-second interval and querying MongoDB on each tick.</p>
+<p>That last decision is the one I'd expect to be challenged, so here's the reasoning. The alternative — holding current values in memory for the callbacks to read directly — is faster and skips a database round trip. It's also invisible: nothing persists, nothing can be filtered later, nothing can be exported, and a restart loses everything. Requirements 4 and 8 put a database in the path regardless. Writing <em>through</em> it rather than <em>around</em> it meant one data path instead of two.</p>
+<p>The cost is honest: worst-case latency is one polling interval plus a query plus a render, so the real figure sits between one and two seconds rather than a flat one. We met the requirement by construction rather than by measurement, and those are not the same claim.</p>
+<p><strong>Why Dash and not Grafana?</strong> Grafana would have given us live dashboards, time-series storage and CSV export for free, and for a pure monitoring brief it would have been the right answer. It couldn't do the two things this project needed. The impedance calculation isn't a query — it's complex arithmetic with per-line compensation constants that has to run before anything can be plotted. And the zone characteristics aren't data, they're geometry derived from a parameter set the user edits at runtime. Given a hard "must be Python" requirement, a tool that pushed the interesting half somewhere else would have defeated the point.</p>
+<p><strong>Why MongoDB and not InfluxDB?</strong> For the Params collection alone, a time-series database would have been better — compression, retention, downsampling, all free. But the store isn't only time-series. Line_Params holds a nested per-line configuration and LINE holds zone geometry as nested coordinate objects, two dozen named corner points per characteristic. That's document-shaped data, written as a unit and read as a unit. Splitting across two databases for a system a small team had to maintain wasn't worth the ceremony. Extending rather than delivering, I'd move Params to a time-series store and leave the configuration where it is.</p>
+<h3>Live Parameter Editing</h3>
+<figure><img src="image-4.png" alt="Live parameter editing"><figcaption>The Config Parameter panel, with the last applied values shown.</figcaption></figure>
+<p>Requirement 7 sounds like a nice-to-have and is actually the difference between a demo and a tool.</p>
+<p>The zone characteristic depends entirely on a parameter set an engineer might want to revise: resistive and reactive reaches for three zones in both modes, the line angle, and the sequence impedance ratio. Requiring a code change and a restart for each revision would have made the system unusable for the people it was built for.</p>
+<p>So the dashboard exposes the full parameter set per line, with three details that matter more than they look:</p>
+<ul>
+<li><strong>The last applied value is shown above each input</strong>, so an engineer editing a live system sees what they're about to change before they change it.</li>
+<li><strong>Apply is disabled until every field is populated</strong>, because a partially applied parameter set produces a plausible-looking wrong characteristic — which is worse than an obviously broken one.</li>
+<li><strong>Non-numeric input is rejected with a warning</strong> rather than silently coerced.</li>
+</ul>
+<p>On apply, values are written back to MongoDB and the zone geometry is regenerated immediately, so the plot updates against the new configuration.</p>
+<p>The set also carries <code>delta_t</code>, <code>id2</code>, <code>line_length</code> and the CT and VT ratios. These are stored and editable but not consumed by our calculations — the client applies them on their side. Storing values you don't use feels wrong until you remember whose system it is.</p>
+<h3>Filtering, Export, and Alerting</h3>
+<p>Raw measurements land in Params with a timestamp. The dashboard filters between a start and end timestamp in a fixed <code>YYYY-MM-DD_HH:MM:SS</code> format, renders the result as a table, and exports it to CSV — the mechanism by which anything leaves the system and enters someone's analysis.</p>
+<p>There's also a threshold alarm: neutral current above a configurable <strong>SETPOINT_IN</strong> fires a <strong>Telegram</strong> notification. Neutral current on a three-phase feeder is a proxy for unbalance, and unbalance is the sort of thing you want on your phone rather than in next week's report. Telegram over email or SMS was pragmatic — free, instant, already on the operators' phones, about fifteen lines to implement.</p>
+<figure><img src="image-6.png" alt="Telegram alert"><figcaption>Automated Telegram alert on high neutral current.</figcaption></figure>
+<h2>Testing</h2>
+<p><strong>Twelve functional cases and nine negative cases.</strong> The negative set is the more interesting half: malformed timestamp format, end timestamp earlier than start, CSV export attempted before any data is filtered, incomplete parameter sets, non-numeric parameter input, non-numeric setpoints.</p>
+<p>That ratio reflects where the risk actually sat. The happy path was never going to be the problem. A user pasting a timestamp in the wrong format, or applying half a parameter set to a live protection display, was.</p>
+<h2>SWOT Analysis</h2>
+<figure><img src="image-7.png" alt="SWOT analysis"><figcaption>SWOT analysis and architectural evaluation.</figcaption></figure>
+<p><strong>Strengths.</strong> The system does the thing that's genuinely hard in this domain — correct ground-loop impedance with residual compensation — and presents it against the actual protection settings rather than in isolation. Live parameter editing with last-value display and validation makes it usable by the engineers it was built for. The one-second target was met with an architecture simple enough for the client's own team to maintain in the language they asked for.</p>
+<p><strong>Weaknesses.</strong> Latency was met by construction, not measured end to end. The axis labels are wrong. Concurrency between the MQTT subscriber and the dashboard relies on the GIL and a slow refresh rate rather than a queue. Connection strings were embedded in source rather than configuration. And half the stored parameter set is inert on our side, which is defensible but should be visible in the UI rather than implied.</p>
+<p><strong>Opportunities.</strong> Splitting the store — time-series data in a time-series database, configuration in Mongo — would pay for itself as Params grows. Instrumenting the pipeline with end-to-end timestamps would turn "we met the spec" into a number. And the same zone-margin view could drive trending: not just where the impedance is now, but how its margin has moved over a month.</p>
+<p><strong>Threats.</strong> The system's usefulness depends entirely on the parameter set matching the relay's real settings. Nothing in the design verifies that, so a stale parameter set produces a confident, well-drawn, wrong picture. Any future version should reconcile against the relay itself.</p>
+<h2>Conclusion</h2>
+<p>A conclusion should answer the objectives. From this project we conclude that:</p>
+<ol>
+<li>We were able to <strong>take the data across the handoff and get it to screen inside the required window</strong>, using MQTT into MongoDB into a polling Dash front end, entirely in Python.</li>
+<li>We were able to <strong>implement the client's Line Processing Data correctly</strong>, including residual compensation for ground loops, producing six impedances per line rather than a naive V-over-I approximation.</li>
+<li>We were able to <strong>render the protection zones as quadrilateral characteristics</strong> and plot live impedance against them, for both phase-to-ground and phase-to-phase.</li>
+<li>We were able to <strong>make the parameter set editable at runtime</strong> with validation and last-value display, and to filter, export and alert on the stored data.</li>
+</ol>
+<p>The thing I'd carry into the next one: when you own half a pipeline, the honest engineering question isn't whether you hit the number, it's whether you can prove it. We could have, and we didn't.</p>
+<p>The dashboard met its one-second budget by design. The next step is to measure it.</p>
+<hr />
+<p><em><code>[Author bio.]</code></em></p>
+</article><div class="tags">Internet Of Things, Power Systems, Python, Plotly Dash, MQTT</div>
+<footer class="site"><div class="in">
+  <div><div style="font-family:'Fraunces',serif;font-size:24px;margin-bottom:6px">Want the full story?</div>
+  <div style="opacity:.85">Happy to talk about any of this — the parts that worked and the parts that didn't.</div></div>
+  <a class="cta" href="mailto:ega.guntara394@gmail.com">ega.guntara394@gmail.com</a>
+</div></footer>
+</body></html>

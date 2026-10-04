@@ -1,0 +1,249 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Sixty-Second Copy-Paste Window, and What It Was Costing Us — Ega Guntara</title>
+<meta name="description" content="Problem  Recovering a stuck eUICC took six manual steps across two tools against live SM-DP/SM-SR platforms, with a value that expired in 60 seconds, and the profile data lived">
+<meta property="og:title" content="A Sixty-Second Copy-Paste Window, and What It Was Costing Us — Ega Guntara">
+<meta property="og:description" content="Problem  Recovering a stuck eUICC took six manual steps across two tools against live SM-DP/SM-SR platforms, with a value that expired in 60 seconds, and the profile data lived">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+:root{--green:#1F4D3A;--rust:#A65A1B;--cream:#F3F5F4;--ink:#18221D;--soft:#34423B;--line:#DCE4DF}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Work Sans',system-ui,sans-serif;font-size:18px;line-height:1.75}
+img{max-width:100%;display:block}
+a{color:var(--green)} a:hover{color:var(--rust)}
+a:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+header.site{max-width:1160px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header.site .nm{font-family:'Fraunces',serif;font-weight:800;font-size:22px;color:var(--green);text-decoration:none}
+header.site a.back{font-size:15px;font-weight:500;text-decoration:none}
+.masthead{max-width:820px;margin:0 auto;padding:40px 24px 8px}
+.eyebrow{margin:0 0 18px;font-size:14px;font-weight:600;color:var(--rust);letter-spacing:.1em;text-transform:uppercase}
+h1.title{margin:0;font-family:'Fraunces',serif;font-size:clamp(36px,5.4vw,64px);line-height:1.04;font-weight:600;letter-spacing:-.02em;color:var(--green)}
+.deck{margin:20px 0 0;font-size:21px;line-height:1.55;color:var(--soft)}
+.summary{max-width:820px;margin:34px auto 0;padding:0 24px}
+.summary .box{background:#fff;border-left:4px solid var(--rust);padding:22px 26px;display:grid;gap:14px}
+.summary b{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);margin-bottom:3px}
+.summary p{margin:0;font-size:17px;line-height:1.6}
+article{max-width:820px;margin:0 auto;padding:10px 24px 80px}
+article h2{font-family:'Fraunces',serif;font-size:clamp(26px,3.3vw,36px);line-height:1.2;font-weight:600;color:var(--green);margin:52px 0 14px;letter-spacing:-.01em}
+article h3{font-family:'Fraunces',serif;font-size:23px;font-weight:600;margin:34px 0 10px;color:var(--ink)}
+article p{margin:0 0 20px}
+article ul,article ol{margin:0 0 20px;padding-left:24px}
+article li{margin-bottom:9px}
+article blockquote{margin:28px 0;padding:4px 0 4px 22px;border-left:3px solid var(--line);color:var(--soft);font-family:'Fraunces',serif;font-size:21px;line-height:1.5}
+article code{background:#e9ede9;padding:1px 6px;border-radius:3px;font-size:.88em}
+article pre{background:#fff;border:1px solid var(--line);padding:16px;overflow:auto}
+article pre code{background:none;padding:0}
+article hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+article table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:16px;background:#fff}
+article th,article td{border:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top}
+article th{background:#eef2ef;font-weight:600}
+figure{margin:34px 0}
+figure img{width:100%;background:#fff;border:1px solid var(--line)}
+figcaption{margin-top:10px;font-size:15px;color:var(--soft)}
+.pending{background:#fff;border:1px dashed #b9c6bd;padding:40px 24px;text-align:center;color:#7c8a81;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.tags{max-width:820px;margin:0 auto;padding:0 24px 50px;color:var(--soft);font-size:15px}
+footer.site{background:var(--green);color:#fff;padding:54px 24px}
+footer.site .in{max-width:820px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:center}
+footer.site a{color:#fff}
+footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:600}
+@media(max-width:640px){body{font-size:17px}}
+</style></head><body>
+<header class="site"><a class="nm" href="../../index.html">Ega Guntara</a><a class="back" href="../../projects.html">← All projects</a></header>
+<div class="masthead"><p class="eyebrow">Project write-up</p><h1 class="title">A Sixty-Second Copy-Paste Window, and What It Was Costing Us</h1><p class="deck">Profile Management Assistant, Version 1 — an eUICC provisioning tool for M2M test teams</p></div><div class="summary"><div class="box"><div><b>Problem</b><p>Recovering a stuck eUICC took six manual steps across two tools against live SM-DP/SM-SR platforms, with a value that expired in 60 seconds, and the profile data lived on individual laptops.</p></div><div><b>What I built</b><p>A Django web application with a central data store, automated provisioning workflows, corporate LDAP login, three user roles, and a Jenkins/Docker deployment.</p></div><div><b>Result</b><p>The team's main eUICC tool. Recovery takes a few clicks, and new testers have all the profile data from their first day.</p></div></div></div><article><figure><div class="pending">Fig 1 — photo pending</div><figcaption>Profile Management Assistant: Version 1</figcaption></figure>
+<hr />
+<h2>Background</h2>
+<p>An eUICC in the field is supposed to agree with the server that manages it. Sometimes it doesn't.</p>
+<p>The failure we hit often enough to build a tool around is what we call a <strong>stuck ICCID</strong>. A card in a device gets reset to factory state — but the ICCID stays registered against the application identifier on the server side. The card has forgotten. The platform hasn't. From that moment the two disagree, and every subsequent operation is reasoning from a record that no longer describes reality.</p>
+<figure><img src="pma-5-stuck-iccid.png" alt="What a stuck ICCID is"><figcaption>The card has forgotten. The platforms haven't.</figcaption></figure>
+<p>Recovering from it is not hard. It is just long, and it has to be done in a specific order, by hand, against live production systems, under time pressure.</p>
+<p>Here is what a tester did before this tool existed:</p>
+<ol>
+<li><strong>Delete the registered ICCID from the SM-DP</strong> with an HTTP request.</li>
+<li><strong>Request a new transaction</strong> from the provisioning server to obtain a transaction value.</li>
+<li><strong>Copy that value into the provisioning XML</strong> — and do it inside one minute, because the value rotates every minute.</li>
+<li><strong>Run the ICCID provisioning</strong> through SOAP UI.</li>
+<li><strong>Run the commit transaction</strong>, which is what actually makes the provisioning stick.</li>
+<li><strong>Delete the AID registered in the SM-SR</strong>, and re-provision it, so the application state on the server matches what is really on the UICC.</li>
+</ol>
+<p>Six steps, two different systems, two different tools, one hand-copied value, and a sixty-second timer running through the middle of it.</p>
+<p>Do it once and it's a mildly annoying afternoon. Do it repeatedly — which is exactly what testing looks like — and it becomes the job.</p>
+<p>But the repetition wasn't the worst part either.</p>
+<h2>The Part Nobody Put In A Ticket</h2>
+<p><strong>Not every tester had the XML files.</strong></p>
+<p>The provisioning XML for a given ICCID lived wherever the person who last used it had saved it. Which meant that when you hit a stuck ICCID, step zero of the recovery was: find someone who has the file for this card, and ask them for it.</p>
+<p>If they were in a meeting, you waited. If they were on leave, you waited longer. If they had left, you hoped someone else had a copy.</p>
+<p>And a new tester joining M2M product testing didn't inherit any of it. They started with nothing, and assembled their own collection of profile data by asking around, one file at a time, until they had enough to work independently. That is not onboarding. That is archaeology.</p>
+<p>So the real problem was never the six steps. It was that <strong>the data required to do the job lived in individual people's folders</strong>, and the procedure required to use it lived in individual people's heads.</p>
+<p>The Profile Management Assistant is a web application that holds both.</p>
+<h2>My Role</h2>
+<ul>
+<li><strong>Ega Guntara</strong> — everything: architecture, backend, provisioning integration, authentication, roles, deployment pipeline, tests</li>
+</ul>
+<p>Built solo, from April to July 2026.</p>
+<h2>Case Study</h2>
+<p>Some context for readers who don't live in this world.</p>
+<p>This is <strong>M2M remote provisioning</strong> — the GSMA <strong>SGP.02</strong> architecture, not the consumer SGP.22 flow most people have met through eSIM on a phone. The difference matters. In the consumer architecture the device drives the process and a person taps a confirmation. In M2M there is no person and often no screen: a module in a meter, a vehicle or a tracker is provisioned remotely by the platform, with no user to intervene when something goes wrong.</p>
+<p>Two server roles matter here. The <strong>SM-DP</strong> prepares and delivers profiles. The <strong>SM-SR</strong> manages them once they're on the card — which profile is enabled, what's installed, what state each one is in.</p>
+<p>A stuck ICCID is a disagreement between what those servers believe and what the card actually contains. Both have to be corrected, in the right order, or you've fixed half of it and made the next diagnosis harder.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>As-is (before)</th>
+<th>To-be (with PMA)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Profile XML data</td>
+<td>scattered across individual PCs</td>
+<td>centralised, one source</td>
+</tr>
+<tr>
+<td>Getting a file you don't have</td>
+<td>ask a colleague, wait</td>
+<td>look it up</td>
+</tr>
+<tr>
+<td>Recovery procedure</td>
+<td>six manual steps, two tools</td>
+<td>one workflow</td>
+</tr>
+<tr>
+<td>The TNX window</td>
+<td>copy-paste inside 60 s</td>
+<td>handled by the server</td>
+</tr>
+<tr>
+<td>New tester ramp-up</td>
+<td>collect files by asking around</td>
+<td>log in</td>
+</tr>
+<tr>
+<td>Who can do what</td>
+<td>anyone with SOAP UI</td>
+<td>roles</td>
+</tr>
+</tbody>
+</table>
+<figure><div class="pending">Fig 2 — photo pending</div></figure>
+<h2>Stakeholders and Requirements</h2>
+<p>Before writing code, I wrote down who the tool was for and what it had to guarantee.</p>
+<p><strong>Stakeholders</strong></p>
+<ul>
+<li><strong>Testers</strong> — run the recoveries every day; need the data and the procedure without asking anyone.</li>
+<li><strong>Test leads</strong> — own the profile data; need to control who can add to it or change it.</li>
+<li><strong>Engineering manager</strong> — needs the tool to be safe against production platforms and maintainable after I move on.</li>
+<li><strong>IT and company policy</strong> — decide the login system (corporate LDAP), the package sources (internal mirror only) and where the tool may run (company servers).</li>
+<li><strong>The live SM-DP and SM-SR platforms</strong> — not people, but the system every operation changes, so their state is a requirement in its own right.</li>
+</ul>
+<p><strong>Functional requirements</strong></p>
+<ul>
+<li><strong>F1.</strong> One central store for ICCIDs, AIDs and their profile data.</li>
+<li><strong>F2.</strong> The recovery sequence runs as one automated workflow, including the timed transaction value.</li>
+<li><strong>F3.</strong> Every workflow reports a result per step: which step ran, and what the platform answered.</li>
+</ul>
+<p><strong>Non-functional requirements</strong></p>
+<ul>
+<li><strong>N1.</strong> Login through the company's LDAP; no separate passwords.</li>
+<li><strong>N2.</strong> Roles that separate using the data from adding to it.</li>
+<li><strong>N3.</strong> An operation refuses to run when the platform's current state can't be verified.</li>
+<li><strong>N4.</strong> Deployable on company infrastructure, from the internal package mirror.</li>
+</ul>
+<h2>Workflow</h2>
+<p>The design follows directly from the two problems: the data was scattered, and the procedure was manual and timed.</p>
+<p>So the tool is two things stacked. Underneath, <strong>a store</strong>: ICCIDs, AIDs and their associated profile data, in one database, available to everyone who's allowed to see it. On top, <strong>a set of operations</strong> that use that store to talk to the live SM-DP and SM-SR — so the six-step recovery becomes a workflow the server executes rather than a checklist a human follows.</p>
+<figure><img src="pma-1-architecture.png" alt="System architecture"><figcaption>A store underneath, operations on top, two live platforms on the other side.</figcaption></figure>
+<p>Four objectives:</p>
+<ol>
+<li><strong>Centralise the profile data</strong> so no tester is ever blocked waiting for a colleague to send a file.</li>
+<li><strong>Automate the timed sequence</strong> so the transaction value is fetched and used by the same process, not copied by a human against a clock.</li>
+<li><strong>Keep it usable by the whole test team</strong>, including people who joined last week.</li>
+<li><strong>Make it survivable in a corporate environment</strong> — the company's authentication, the company's servers, the company's package sources, the company's rules.</li>
+</ol>
+<h2>Building the System</h2>
+<p>The stack is <strong>Django</strong> with <strong>PostgreSQL</strong>, served by <strong>Gunicorn</strong> behind <strong>Nginx</strong>, running in <strong>Docker</strong>, deployed through a <strong>Jenkins</strong> pipeline to an internal container registry, authenticating against corporate <strong>LDAP</strong>.</p>
+<p>None of that is exotic. All of it was chosen because it's what the environment could actually run.</p>
+<h3>Why a Web Application</h3>
+<p>The same reason I built Obtana, my OTA test platform, as a web application, arriving from a different direction.</p>
+<p>A script would have automated the six steps. It would not have solved the file problem, because a script still needs the XML, and the XML would still have lived on somebody's laptop. Worse, a script would have needed a working Python environment on every tester's machine — and I had already watched what that costs.</p>
+<p>A web application solves both at once: the data lives where the application lives, and the only thing a tester needs is a browser and an account. New testers don't collect files. They log in and the files are there.</p>
+<h3>Closing the Sixty-Second Window</h3>
+<p>Step 3 of the manual procedure is a human copying a value that expires in a minute.</p>
+<p>That is not a difficult problem to solve in software — the same process that requests the transaction value uses it, and the interval between the two is measured in milliseconds rather than in how quickly someone can alt-tab. But it's worth being precise about what it actually fixes, because "we automated a copy-paste" undersells it.</p>
+<p>A timed manual step doesn't just cost time. It <strong>changes how people behave around it</strong>. You don't start the sequence when you're about to be interrupted. You rush the paste and don't check it. When it fails you're not sure whether you were too slow or whether something is genuinely wrong, so you retry — against live systems — instead of investigating.</p>
+<p>Removing the window removes all of that, and the failure mode afterwards is honest: if it fails now, something is actually wrong.</p>
+<figure><img src="pma-2-before-after.png" alt="Before and after"><figcaption>Six steps across two tools, with a clock running through step three — replaced by one workflow.</figcaption></figure>
+<h3>Operating Against Live Systems</h3>
+<p>This part deserves to be stated plainly rather than buried: <strong>PMA deletes and re-provisions records on live production SM-DP and SM-SR systems.</strong></p>
+<p>Not a staging copy. The real ones.</p>
+<p>That raises the cost of every category of mistake in the application. A bug in a hobby project wastes an evening. A bug here writes to a production platform managing profiles on cards that are in the field, in devices, doing a job.</p>
+<p>It's also the clearest justification for two things that might otherwise look like over-engineering on an internal tool — the roles, and the tests.</p>
+<p>So the operations are built to refuse.</p>
+<p>Before provisioning an ICCID, the tool checks that the record exists in its own store, then asks the SM-DP what it currently believes about that ICCID. If the platform says the ICCID is already provisioned, the request is rejected rather than duplicated. Before deleting, the same check runs in reverse: if the ICCID isn't there, there is nothing to delete and the request is refused.</p>
+<p>The case that matters most is the third one. <strong>If the tool cannot reach the SM-DP to check at all, it refuses to proceed.</strong></p>
+<p>That is a deliberate choice and it's worth defending, because the alternative is tempting. A tool that carries on when it can't verify feels more useful — it does what you asked instead of complaining about the network. But an operation against a production platform, issued without knowing the platform's current state, is a guess. Sometimes the guess is right. When it isn't, you have written to a live system on the basis of a belief you never checked.</p>
+<p>The rule I settled on: <strong>an operation that cannot see the system it is about to change does not run.</strong></p>
+<figure><img src="pma-3-guard.png" alt="The guard"><figcaption>Three ways to refuse. The middle one is the one worth having.</figcaption></figure>
+<h3>Authentication and Roles</h3>
+<p>Login is <strong>corporate LDAP</strong> — the account a tester already has, no separate credential to issue or forget. That was a company requirement rather than a preference, and it's the right requirement: an internal tool with its own user table is a small identity system nobody wants to maintain.</p>
+<p>On top of that sits a three-role hierarchy:</p>
+<ul>
+<li><strong>Tester</strong> — run the provisioning operations.</li>
+<li><strong>Test lead</strong> — that, plus register new profile data into the store.</li>
+<li><strong>Superadmin</strong> — that, plus manage who has which role. For now that's me, as the tool's owner; the team's engineering manager joins this role next.</li>
+</ul>
+<p>The separation that matters is between <strong>using</strong> the data and <strong>adding</strong> it. Anyone on the team may need to recover a stuck ICCID; not everyone should be writing new records into the store that everyone else depends on. Centralising the data solved the availability problem, but it also created a single source of truth — and a single source of truth that anyone can edit is just a shared folder with extra steps.</p>
+<p>One implementation detail worth mentioning because it's a real edge case: roles have to be assignable to people who have <strong>never logged in</strong>. Django only knows about a user once they've authenticated, but a superadmin wants to grant access on Monday to someone starting on Wednesday. So role management — a section of the dashboard only superadmins see — looks up accounts in the directory and pre-creates them, rather than waiting for a first login that hasn't happened yet.</p>
+<figure><img src="pma-4-roles.png" alt="Role model"><figcaption>The line is drawn between using the shared data and adding to it.</figcaption></figure>
+<figure><div class="pending">Fig 5 — photo pending</div></figure>
+<h3>Building Inside the Walls</h3>
+<p>This is the part that took the most time, and it isn't a feature.</p>
+<p><strong>Every dependency has to come from the company's internal package mirror.</strong> Not PyPI. If a version isn't mirrored, you don't <code>pip install</code> it — you request it, and you wait.</p>
+<p>That constraint turns ordinary dependency management into negotiation, and it produces a specific and maddening class of failure: a package that builds fine anywhere else fails here, because the exact combination of versions available internally isn't the combination the package expects. The one that cost me the most time involved a library whose build system still imported a module that modern packaging tools had removed — resolvable, but only once you understand that the error you're reading is about the <em>build</em> environment rather than the application.</p>
+<p>A few other things the environment taught me:</p>
+<p><strong>Behind TLS termination, Django needs telling.</strong> Nginx handles HTTPS and forwards internally over plain HTTP, so Django sees an insecure request and rejects the form with a 403. The fix is one setting. Finding it is not, because the symptom — CSRF failure — points at the form.</p>
+<p><strong>Turning off debug mode turns off the tracebacks.</strong> With <code>DEBUG=False</code> and no logging configured, a 500 error is a blank page and nothing in the console. You are debugging a production application with no information at all until you configure logging explicitly.</p>
+<p><strong>Serving under a path prefix touches every request the front end makes.</strong> The application lives under a sub-path, which the framework handles for its own URLs — and does nothing about for the URLs hardcoded in JavaScript. Every <code>fetch</code> needs the prefix injected, and the ones you forget fail only when that part of the page is used.</p>
+<p><strong>Linux is case-sensitive. Windows isn't.</strong> Code that ran on my machine failed in the pipeline over a capital letter in a filename.</p>
+<p>None of these are interesting problems. All of them are the actual work of shipping something inside a corporate network, and articles about internal tools tend to skip them entirely — which is why people who've only built things on their own laptop are surprised by how long it takes.</p>
+<h3>Testing an Internal Tool</h3>
+<p>Twenty-nine tests, on a tool used by one team.</p>
+<p>That ratio looks excessive for internal software right up until you remember what the application talks to. The tests aren't there because the code is complicated. They're there because the blast radius of a wrong operation includes a production provisioning platform.</p>
+<p>They caught something I would not have caught by hand: <strong>a missing login check is invisible to a logged-in user.</strong> You don't find it by clicking around, because you are logged in. You find it by writing a test that asks what happens when you aren't. Every endpoint now has one.</p>
+<p>The suite also covers the things that are easy to believe without checking. The role split is tested from both sides — a tester receives a 403 on the registration endpoints, an administrator does not — so the permission model is verified rather than assumed. The safety guards have their own tests. And after the listing broke once because the SM-DP was unreachable, that failure got its own test class: the list now survives both an unreachable platform and an exception from it, degrading a single row to "unknown" instead of taking down the page.</p>
+<p>That last one is the pattern I'd point at. A test written after the bug, naming the bug, so it cannot come back quietly.</p>
+<h2>What's Built, and What Isn't</h2>
+<p><strong>In use today</strong>, deployed on a company server, used daily by the test team, with LDAP login and the three-role hierarchy in place.</p>
+<p><strong>Still open:</strong></p>
+<ul>
+<li><strong>No history.</strong> The store knows the current state of every ICCID and AID, but not who ran which operation, when, or what the platform answered. When something goes wrong, the tool can't yet tell you what happened before it.</li>
+<li><strong>Platform responses are parsed with regular expressions.</strong> That works because the responses are narrow and machine-generated, but a namespace change upstream would break it quietly rather than loudly.</li>
+</ul>
+<h2>SWOT Analysis</h2>
+<p><strong>Strengths.</strong> Operations refuse to run when the tool cannot verify the platform's current state, which is the right default for something that writes to production and an uncommon one for an internal tool. It fixes the invisible problem — scattered profile data and the tribal knowledge around it — rather than only the visible one. It removes a timed human step, and with it a whole class of stress-induced mistakes against live systems. It uses the identity system the company already has, so there are no extra credentials. The role split protects the shared data store from the consequences of centralising it. And it's tested to a standard that matches what it can break, not what it costs.</p>
+<p><strong>Weaknesses.</strong> It operates on live production systems, which makes every defect expensive. Built by one person, so the knowledge is concentrated. There's no record of who ran which operation. And platform responses are parsed with regular expressions, which will break quietly rather than loudly if an upstream format changes.</p>
+<p><strong>Opportunities.</strong> The store now holds the profile data for the whole team, which makes it the natural place for history — who provisioned what, when, and whether it worked. With the operations already automated, running the recovery across several ICCIDs at once is an extension rather than a redesign. And the same centralisation argument applies to the other manual SOAP UI procedures that haven't been absorbed yet.</p>
+<p><strong>Threats.</strong> A tool that talks to live provisioning platforms inherits their upgrade schedule; an interface change upstream is a change I have to follow. The internal mirror constraint means a security update to a dependency isn't something I can simply apply. And a single-author tool the whole team depends on daily is a bus-factor problem regardless of how well it's tested.</p>
+<h2>Conclusion</h2>
+<p>Against what I set out to do:</p>
+<ol>
+<li><strong>Centralised the profile data</strong>, so no tester waits on a colleague for an XML file and no new joiner has to assemble a private collection before they can work.</li>
+<li><strong>Automated the timed provisioning sequence</strong>, closing a sixty-second copy-paste window that shaped how people behaved around it.</li>
+<li><strong>Used the company's existing identity system</strong>, with a role hierarchy separating who may use the data from who may add to it.</li>
+<li><strong>Shipped it inside a restricted corporate environment</strong> — internal package mirror, private registry, pipeline, TLS termination, path prefix and all.</li>
+<li><strong>Made it refuse to act when it cannot verify</strong>, which is the property I'd defend hardest if someone reviewed this tool.</li>
+<li><strong>No memory yet.</strong> It knows the current state of every record, but not who changed it, when, or what the platform said at the time.</li>
+</ol>
+<p>The lesson I'm taking is the same one Obtana taught me, which is why I now trust it.</p>
+<p>Everybody could describe the pain: six steps, two tools, a timer, over and over. That was the complaint, and automating it was the obvious fix. But the thing that actually stopped people working was that the files lived on individual laptops, and the only way to get one was to ask a person who might not be there.</p>
+<p>Nobody raised that, because it didn't feel like a defect. It felt like how things were.</p>
+<p>The visible problem is the one you get asked to solve. The invisible one is usually the one worth solving.</p>
+<p>Next on the list for PMA is a history of every operation, so the tool can say what happened as well as what is.</p>
+<hr />
+</article><div class="tags">eSIM, eUICC, Test Automation, Django, QA Engineering</div>
+<footer class="site"><div class="in">
+  <div><div style="font-family:'Fraunces',serif;font-size:24px;margin-bottom:6px">Want the full story?</div>
+  <div style="opacity:.85">Happy to talk about any of this — the parts that worked and the parts that didn't.</div></div>
+  <a class="cta" href="mailto:ega.guntara394@gmail.com">ega.guntara394@gmail.com</a>
+</div></footer>
+</body></html>
