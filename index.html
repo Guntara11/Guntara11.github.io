@@ -21,62 +21,60 @@ img{max-width:100%;display:block}
 .photo{width:100%;height:100%;object-fit:cover}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #A65A1B;outline-offset:2px}
 
-/* side rail navigation — sections stay one click away, no scrolling back up */
-.rail{position:fixed;top:0;left:0;bottom:0;width:236px;background:#FFFFFF;border-right:1px solid #DCE4DF;
-      padding:34px 22px;display:flex;flex-direction:column;gap:26px;z-index:60;overflow-y:auto}
-.rail .brand{text-decoration:none;display:block}
-.rail .nm{font-family:'Fraunces',serif;font-weight:800;font-size:21px;color:#1F4D3A;line-height:1.2;display:block}
-.rail .role{margin:6px 0 0;font-size:12.5px;line-height:1.45;color:#4A5A52;letter-spacing:.02em}
-.rail nav{display:flex;flex-direction:column;gap:2px}
-.rail nav a{display:block;padding:9px 12px;border-left:3px solid transparent;border-radius:0 6px 6px 0;
-            font-size:15px;font-weight:500;color:#34423B;text-decoration:none}
-.rail nav a:hover{background:#F3F5F4;color:#1F4D3A}
-.rail nav a.on{background:#F3F5F4;color:#1F4D3A;font-weight:600;border-left-color:#A65A1B}
-.rail .foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
-.rail .cv{display:inline-block;background:#1F4D3A;color:#FFFFFF;text-decoration:none;font-weight:600;
-          font-size:14px;padding:11px 16px;border-radius:999px;text-align:center}
-.rail .mini{font-size:13px;color:#4A5A52;text-decoration:none}
-.page{padding-left:236px}
-section{scroll-margin-top:24px}
-
-@media (max-width:1023px){
-  .rail{position:sticky;top:0;bottom:auto;width:auto;height:auto;flex-direction:row;flex-wrap:wrap;
-        align-items:center;gap:8px 16px;padding:12px 18px;border-right:0;border-bottom:1px solid #DCE4DF;
-        box-shadow:0 2px 10px rgba(24,34,29,.06)}
-  .rail .role{display:none}
-  .rail .brand{margin-right:auto}
-  .rail nav{order:2;flex-basis:100%;flex-direction:row;flex-wrap:wrap;gap:2px;margin:-2px 0 0}
-  .rail .foot{order:1}
-  .rail nav a{padding:6px 10px;border-left:0;border-bottom:2px solid transparent;border-radius:6px;font-size:14px}
-  .rail nav a.on{border-left:0;border-bottom-color:#A65A1B}
-  .rail .foot{margin-top:0;flex-direction:row;align-items:center;gap:12px;order:1}
-  .rail .mini{display:none}
-  .rail .cv{padding:8px 14px;font-size:13px}
-  .page{padding-left:0}
-  section{scroll-margin-top:86px}
+/* sticky top navigation — at the top, but it follows you down the page */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(243,245,244,.92);
+        backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #DCE4DF}
+.topbar .in{max-width:1160px;margin:0 auto;padding:13px 24px;display:flex;flex-wrap:wrap;
+            align-items:center;gap:8px 24px}
+.topbar .brand{text-decoration:none;margin-right:auto;display:flex;align-items:baseline;gap:10px;min-width:0}
+.topbar .nm{font-family:'Fraunces',serif;font-weight:800;font-size:21px;color:#1F4D3A;white-space:nowrap}
+.topbar .role{font-size:13px;color:#4A5A52;white-space:nowrap}
+.topbar nav{display:flex;flex-wrap:wrap;gap:2px}
+.topbar nav a{display:block;padding:7px 12px;border-radius:7px;border-bottom:2px solid transparent;
+              font-size:15px;font-weight:500;color:#34423B;text-decoration:none}
+.topbar nav a:hover{background:#E9EEEB;color:#1F4D3A}
+.topbar nav a.on{background:#E9EEEB;color:#1F4D3A;font-weight:600;border-bottom-color:#A65A1B}
+.topbar .cv{background:#1F4D3A;color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+            padding:9px 16px;border-radius:999px;white-space:nowrap}
+section{scroll-margin-top:78px}
+@media (max-width:860px){
+  .topbar .in{padding:10px 16px;gap:6px 12px}
+  .topbar .role{display:none}
+  .topbar nav{order:3;flex-basis:100%;margin-top:2px}
+  .topbar nav a{padding:6px 9px;font-size:14px}
+  section{scroll-margin-top:104px}
 }
+/* experience: summary visible, full detail on demand */
+#work details{margin-top:18px;border-top:1px solid #4F7A66}
+#work summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+              padding:13px 0 0;font-size:15px;font-weight:600;color:#F2C48D}
+#work summary::-webkit-details-marker{display:none}
+#work summary .chev{display:inline-block;transition:transform .18s ease;font-size:13px}
+#work details[open] summary .chev{transform:rotate(90deg)}
+#work summary:hover{color:#fff}
+#work .detail{padding:6px 0 4px}
+#work .grp{margin-top:18px}
+#work .grp h4{margin:0 0 7px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+              color:#F2C48D}
+#work .grp ul{margin:0;padding-left:20px;font-size:15.5px;line-height:1.65;color:#E3EEE8;
+              display:flex;flex-direction:column;gap:7px}
+#work .grp b{color:#fff;font-weight:600}
+@media print{#work details{display:block}#work details>*{display:block}}
 </style>
 </head>
 <body>
 <div id="top" style="background: #F3F5F4; color: #18221D; font-family: 'Work Sans', sans-serif; min-height: 100vh">
-<header class="rail">
-<a class="brand" href="#top">
-<span class="nm">Ega Guntara</span>
-<span class="role">Senior QA Engineer · IoT &amp; Embedded<br/>Jakarta, Indonesia</span>
-</a>
+<header class="topbar"><div class="in">
+<a class="brand" href="#top"><span class="nm">Ega Guntara</span><span class="role">Senior QA Engineer · IoT &amp; Embedded</span></a>
 <nav id="railnav">
 <a href="#about">About</a>
 <a href="#skills">Skills</a>
-<a href="#work">Journey</a>
+<a href="#work">Experience</a>
 <a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
 </nav>
-<div class="foot">
 <a class="cv" href="assets/Ega-Guntara-CV.pdf">Download CV</a>
-<a class="mini" href="https://www.linkedin.com/in/ega-guntara/">LinkedIn ↗</a>
-<a class="mini" href="https://github.com/Guntara11">GitHub ↗</a>
-</div>
-</header>
+</div></header>
 <div class="page">
 <section style="max-width: 1160px; margin: 0 auto; padding: 80px 24px 96px">
 <p style="margin: 0 0 24px; font-size: 15px; font-weight: 600; color: #A65A1B; letter-spacing: 0.1em">SENIOR QA ENGINEER · IOT &amp; EMBEDDED · JAKARTA</p>
@@ -128,10 +126,11 @@ section{scroll-margin-top:24px}
 <section id="work" style="background: #1F4D3A; color: #FFFFFF">
 <div style="max-width: 1160px; margin: 0 auto; padding: 88px 24px">
 <h2 style="margin: 0 0 16px; font-family: 'Fraunces', serif; font-size: 48px; font-weight: 600">The journey so far</h2>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin: 0 0 44px; font-size: 15px; color: #CFE0D7">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin: 0 0 10px; font-size: 15px; color: #CFE0D7">
 <span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 14px; height: 14px; border: 2px solid #CFE0D7; border-radius: 3px"></span>Employment</span>
 <span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 14px; height: 14px; background: #F2C48D; border-radius: 3px"></span>Freelance, alongside the day job</span>
 </div>
+<p style="margin: 0 0 36px; font-size: 15px; color: #9FBFAE">Each role opens into the full detail — the same depth as my LinkedIn, without the scroll.</p>
 <article style="display: flex; flex-wrap: wrap; gap: 24px 48px; padding: 40px 0; border-top: 1px solid #4F7A66">
 <div style="flex: 1 1 220px">
 <div style="font-family: 'Fraunces', serif; font-size: 64px; font-weight: 800; line-height: 1; color: #F2C48D">2022</div>
@@ -142,13 +141,11 @@ section{scroll-margin-top:24px}
 <p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #F2C48D">CHAPTER 3 · TESTING AT SCALE</p>
 <h3 style="margin: 8px 0 4px; font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600">IDEMIA</h3>
 <p style="margin: 0 0 20px; font-size: 17px; color: #E3EEE8">Senior QA Engineer (QA 2), Mar 2026 – now · QA Engineer (QA 1), Nov 2022 – Mar 2026</p>
-<p style="margin: 0 0 18px; font-size: 18px; line-height: 1.65">I joined to test SIM cards and found a job that touches everything: personalization, APDU validation, live 3G/4G/5G attach, OTA updates and eSIM lifecycle on SM-DP/SM-SR. As a senior I now lead validation of eUICC, iSIM and IoT products.</p>
+<p style="margin: 0 0 18px; font-size: 18px; line-height: 1.65">I joined to test SIM cards and found a job that touches everything: personalization, APDU validation, live 3G/4G/5G attach, OTA updates and eSIM lifecycle on SM-DP/SM-SR. As a senior I lead validation of eUICC, iSIM and IoT products.</p>
 <ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.7; display: flex; flex-direction: column; gap: 8px; color: #E3EEE8">
-<li>Built a 24-hour NVM endurance automation that made overnight testing possible — now used in about 90% of NVM projects.</li>
-<li>Replaced manual workflows with OBTANA Web, the eUICC Provisioning Tool and the NVM Script Editor (1–2 days of work → minutes).</li>
-<li>Plan and report testing in Jira/Xray with ATD/ATR documents; run regression across applet versions and modem configs.</li>
-<li>Support IDEMIA teams in Noida, France and Manila, and train our interns across two intakes.</li>
+<li>Built a 24-hour NVM endurance automation that made overnight testing possible — now used in about 90% of NVM projects.</li><li>Replaced manual workflows with OBTANA Web, the eUICC Provisioning Tool and the NVM Script Editor, turning 1–2 days of preparation into minutes.</li><li>Point of contact and trainer for interns across two intakes, and support for IDEMIA teams in Noida, France and Manila.</li>
 </ul>
+<details><summary><span class="chev">▶</span>Full detail — what the role actually involved</summary><div class="detail"><div class="grp"><h4>Validation &amp; test execution</h4><ul><li>Validate UICC/eUICC (SIM/eSIM) card OS and applets end to end on live 3G, 4G, 5G and NB-IoT networks for international mobile operators, down to APDU level with COMPRION tooling.</li><li>Run feasibility studies against 3GPP, ISO 7816, ETSI and GSMA SGP specifications, and decide what a product can and cannot be asked to do before the test plan is written.</li><li>Test eSIM remote provisioning against live SM-DP/SM-SR platforms (GSMA RSP), including profile download, enable/disable, and recovery from states the card and the platform disagree about.</li><li>Bring up test devices on Quectel, u-blox, Rollingwire and Nordic modules over AT commands, and analyse SIM traces and APDU exchanges when a failure is not where the log says it is.</li><li>As a senior, lead validation of the non-conventional products — eUICC, iSIM and IoT — where there is no existing test set to inherit.</li></ul></div><div class="grp"><h4>Planning, reporting &amp; process</h4><ul><li>Design and maintain test cases in Jira/Xray, plan the execution, and author the ATD and ATR documents that release a product.</li><li>Run regression across applet versions, card OS releases and modem configurations, and keep the test set honest — trimming coverage that no longer earns its runtime.</li><li>Work in Scrum and Kanban with the development and project teams, and report status to the people who decide whether a product ships.</li></ul></div><div class="grp"><h4>Tooling &amp; automation</h4><ul><li><b>NVM endurance automation</b> — Python over AT commands running unattended 24-hour cycles on 5G modems, so engineers collect logs the next morning instead of sitting with the bench. Now used on roughly 90% of NVM projects.</li><li><b>eUICC Provisioning Tool</b> — the team's main tool for eUICC projects. Cuts stuck-ICCID recovery from six manual steps across two tools to a few clicks (Django, PostgreSQL, corporate LDAP, Jenkins, Docker).</li><li><b>OBTANA, OTA test platform</b> — pooled the shared 2G test handsets behind a browser tab (Flask, MQTT, Redis, Raspberry Pi), removing the fragile local Python setup every tester used to maintain.</li><li><b>NVM Script Editor and Validator</b> — converts COMPRION trace logs into DLL-ready .pcom scripts, replacing up to three business days of manual editing, and corrected a length defect in all 22 GET IDENTITY commands of a ~20,000-command capture.</li></ul></div><div class="grp"><h4>Mentoring &amp; cross-site support</h4><ul><li>Point of contact and trainer for interns over two intake terms — onboarding, test method, and reviewing their work.</li><li>Support other IDEMIA sites (Noida, France and Manila) on applet testing, board flashing and module bring-up.</li></ul></div></div></details>
 </div>
 </article>
 <article style="display: flex; flex-wrap: wrap; gap: 24px 48px; margin: 32px 0; padding: 36px 36px 40px; background: #1A4232; border-left: 6px solid #F2C48D; border-radius: 4px">
@@ -161,38 +158,61 @@ section{scroll-margin-top:24px}
 <p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #F2C48D">SIDE TRACK · ALONGSIDE IDEMIA</p>
 <h3 style="margin: 8px 0 4px; font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600">Team Aligness</h3>
 <p style="margin: 0 0 20px; font-size: 17px; color: #E3EEE8">IoT Engineer &amp; Project Lead · Freelance, alongside my role at IDEMIA</p>
-<p style="margin: 0 0 18px; font-size: 18px; line-height: 1.65">Aligness was an independent engineering team I took paid IoT work with outside office hours — five delivered systems, each one from the electrical panel up to the dashboard. We closed it in September 2025, and the systems are still running.</p>
+<p style="margin: 0 0 18px; font-size: 18px; line-height: 1.65">An independent engineering team I took paid IoT work with outside office hours — five delivered systems, each from the electrical panel up to the dashboard. We closed it in September 2025, and the systems are still running.</p>
 <ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.7; display: flex; flex-direction: column; gap: 8px; color: #E3EEE8">
-<li>Led the Smart Greenhouse build for a Ministry of Agriculture programme — control panels, ESP32/FreeRTOS firmware, CO2 and light sensor nodes, OTA updates. In operation at five sites since 2024.</li>
-<li>Designed the flood and water-tank system: ESP32 nodes publishing over MQTT and an ESP32-P4 LVGL wall panel commanding two tanks, four valves and the flood pump unattended.</li>
-<li>Architected an industrial voltage and current monitor for a power-plant client — 16 sensor lines, residual-compensated impedance, MongoDB and a Dash dashboard inside a one-second budget.</li>
-<li>Led a two-person BLE attendance tracker to working prototype, and an ESP32-C3 smart-plug R&amp;D build (TLS-secured MQTT, power metering, custom 2-layer PCB).</li>
+<li>Led the Smart Greenhouse build for a Ministry of Agriculture programme — in operation at five sites since 2024.</li><li>Designed the flood and water-tank system, and architected an industrial power monitor for a power-plant client.</li><li>Led a two-person BLE attendance tracker to working prototype, plus an ESP32-C3 smart-plug R&amp;D build.</li>
 </ul>
+<details><summary><span class="chev">▶</span>Full detail — what the role actually involved</summary><div class="detail"><div class="grp"><h4>Smart Greenhouse — Ministry of Agriculture</h4><ul><li>Project lead. Five sites in operation since 2024.</li><li>Designed the electrical control panels — component selection, wiring, UPS sizing — and the control path that arbitrates automatic versus manual at the power layer, because the commercial fertigation controller exposed no API.</li><li>Co-developed the ESP32/FreeRTOS panel firmware, CO₂ and light sensor nodes on a custom binary protocol, a motorised shading net with a hardware interlock, and fleet-wide OTA updates.</li></ul></div><div class="grp"><h4>Flood &amp; Water-Tank Monitoring</h4><ul><li>System design and firmware. ESP32 nodes with ultrasonic and float sensors publish over MQTT.</li><li>An ESP32-P4 wall panel (LVGL, TLS, C on ESP-IDF) decides and commands two tanks, four solenoid valves and the flood pump, which run unattended.</li></ul></div><div class="grp"><h4>Industrial Voltage &amp; Current Monitoring — power plant client</h4><ul><li>System architect. MQTT ingestion from 16 power-sensor lines (64 data streams).</li><li>Impedance calculated with residual compensation against distance-relay protection zones, stored in MongoDB, and plotted on a Dash dashboard with editable setpoints and alerts — inside a one-second end-to-end budget.</li></ul></div><div class="grp"><h4>BLE Attendance Tracker — confidential client</h4><ul><li>Project lead, team of two, delivered as a working prototype.</li><li>Raspberry Pi scanner written from scratch in Python: identity from the iBeacon UUID rather than the randomised MAC address, enter/exit from an RSSI trend against a threshold, XML reports over FTP every 60 seconds.</li></ul></div><div class="grp"><h4>WiFi Smart Plug — internal R&amp;D</h4><ul><li>ESP32-C3 firmware in C on ESP-IDF, SSR relay control, BL0937 power metering, TLS-secured MQTT, two-stage provisioning, and a custom 2-layer PCB.</li></ul></div></div></details>
 </div>
 </article>
 <article style="display: flex; flex-wrap: wrap; gap: 24px 48px; padding: 40px 0; border-top: 1px solid #4F7A66">
 <div style="flex: 1 1 220px">
 <div style="font-family: 'Fraunces', serif; font-size: 64px; font-weight: 800; line-height: 1; color: #F2C48D">2021</div>
-<p style="margin: 8px 0 0; font-size: 15px; color: #CFE0D7">2021 – 2022</p>
+<p style="margin: 8px 0 0; font-size: 15px; color: #CFE0D7">Jun 2021 – Nov 2022</p>
 <p style="margin: 12px 0 0; display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: #CFE0D7; border: 2px solid #4F7A66; padding: 4px 11px; border-radius: 999px">FULL-TIME</p>
 </div>
 <div style="flex: 999 1 560px; min-width: 0">
 <p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #F2C48D">CHAPTER 2 · BUILDING HARDWARE</p>
-<h3 style="margin: 8px 0 4px; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">PT LEN Industri · Embedded System Engineer</h3>
-<p style="margin: 8px 0 20px; font-size: 17px; line-height: 1.65; color: #E3EEE8">Embedded systems for IFF/SSR radar and ground-controlled interception, plus TR module design and radar data processing.</p>
-<h3 style="margin: 0 0 4px; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">PT Widya Inovasi · Hardware Engineer</h3>
-<p style="margin: 8px 0 0; font-size: 17px; line-height: 1.65; color: #E3EEE8">Designed and tested hardware for 3D Concrete Printing, adapted Marlin firmware and wrote Python G-code tooling.</p>
+<h3 style="margin: 8px 0 4px; font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600">PT Len Industri (Persero)</h3>
+<p style="margin: 0 0 20px; font-size: 17px; color: #E3EEE8">Embedded System Engineer</p>
+<p style="margin: 0 0 18px; font-size: 18px; line-height: 1.65">Embedded systems for the GCI (ground control intercept) IFF/SSR radar programme, in consortium with PT LAPI ITB, PT RTI and PT Infoglobal for Ministry of Defence R&amp;D.</p>
+<ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.7; display: flex; flex-direction: column; gap: 8px; color: #E3EEE8">
+<li>Designed the Transmit/Receive module on an FPGA board (Vivado) and wrote its firmware in C using Vitis IDE.</li><li>Designed the UDP communication between the TR modules and the beam controller, and the TR module PCB in Eagle.</li>
+</ul>
+<details><summary><span class="chev">▶</span>Full detail — what the role actually involved</summary><div class="detail"><div class="grp"><h4>What the work involved</h4><ul><li>Processed radar-captured data together with the data processing team.</li><li>Wrote the project specification documentation for the module.</li><li>Worked inside a defence R&amp;D consortium, where the interfaces between four organisations mattered as much as the hardware.</li></ul></div></div></details>
 </div>
 </article>
-<article style="display: flex; flex-wrap: wrap; gap: 24px 48px; padding: 40px 0 0; border-top: 1px solid #4F7A66">
+<article style="display: flex; flex-wrap: wrap; gap: 24px 48px; padding: 40px 0; border-top: 1px solid #4F7A66">
+<div style="flex: 1 1 220px">
+<div style="font-family: 'Fraunces', serif; font-size: 64px; font-weight: 800; line-height: 1; color: #F2C48D">2021</div>
+<p style="margin: 8px 0 0; font-size: 15px; color: #CFE0D7">Apr 2021 – Jun 2021</p>
+<p style="margin: 12px 0 0; display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: #CFE0D7; border: 2px solid #4F7A66; padding: 4px 11px; border-radius: 999px">FULL-TIME</p>
+</div>
+<div style="flex: 999 1 560px; min-width: 0">
+<p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #F2C48D">CHAPTER 2 · BUILDING HARDWARE</p>
+<h3 style="margin: 8px 0 4px; font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600">Widya Robotics</h3>
+<p style="margin: 0 0 20px; font-size: 17px; color: #E3EEE8">Hardware Engineer</p>
+<p style="margin: 0 0 18px; font-size: 18px; line-height: 1.65">Hardware and software for a 3D Concrete Printing (3DCP) machine.</p>
+<ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.7; display: flex; flex-direction: column; gap: 8px; color: #E3EEE8">
+<li>Developed the machine across Arduino, Raspberry Pi, STM32 and LPC1768 boards.</li><li>Modified Marlin firmware for the printer configuration and wrote a Python G-code generator.</li>
+</ul>
+<details><summary><span class="chev">▶</span>Full detail — what the role actually involved</summary><div class="detail"><div class="grp"><h4>What the work involved</h4><ul><li>Supported the STM32–LPC1768 communication in C/C++.</li><li>Ran functional testing on both the electronics and the software side, and troubleshot faults across the 3DCP system.</li></ul></div></div></details>
+</div>
+</article>
+<article style="display: flex; flex-wrap: wrap; gap: 24px 48px; padding: 40px 0; border-top: 1px solid #4F7A66">
 <div style="flex: 1 1 220px">
 <div style="font-family: 'Fraunces', serif; font-size: 64px; font-weight: 800; line-height: 1; color: #F2C48D">2019</div>
+<p style="margin: 8px 0 0; font-size: 15px; color: #CFE0D7">Jul 2019 – Sep 2019</p>
 <p style="margin: 12px 0 0; display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: #CFE0D7; border: 2px solid #4F7A66; padding: 4px 11px; border-radius: 999px">INTERNSHIP</p>
 </div>
 <div style="flex: 999 1 560px; min-width: 0">
 <p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; color: #F2C48D">CHAPTER 1 · FIRST BOARDS</p>
-<h3 style="margin: 8px 0 4px; font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600">Lievee · Hardware Intern</h3>
-<p style="margin: 8px 0 0; font-size: 17px; line-height: 1.65; color: #E3EEE8">PCB design and Arduino / Raspberry Pi firmware — alongside university robotics competitions in Indonesia and Tokyo.</p>
+<h3 style="margin: 8px 0 4px; font-family: 'Fraunces', serif; font-size: 34px; font-weight: 600">PT Lievee Ciptatama Indonesia</h3>
+<p style="margin: 0 0 20px; font-size: 17px; color: #E3EEE8">Internship Program — Hardware Engineer</p>
+<p style="margin: 0 0 18px; font-size: 18px; line-height: 1.65">Where the hardware habit started: a lift sub-system, built on Arduino, STM32 and Raspberry Pi.</p>
+<ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.7; display: flex; flex-direction: column; gap: 8px; color: #E3EEE8">
+<li>Developed a lift sub-system with relay control in C and Python.</li><li>Designed and reviewed the PCBs in Eagle — alongside university robotics competitions in Indonesia and Tokyo.</li>
+</ul>
 </div>
 </article>
 </div>
