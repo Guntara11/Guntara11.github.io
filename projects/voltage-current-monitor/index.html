@@ -11,7 +11,9 @@ body{margin:0;background:var(--cream);color:var(--ink);font-family:'Work Sans',s
 img{max-width:100%;display:block}
 a{color:var(--green)} a:hover{color:var(--rust)}
 a:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
-header.site{max-width:1160px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.bar{position:sticky;top:0;z-index:50;background:rgba(243,245,244,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header.site{max-width:1160px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header.site nav{display:flex;flex-wrap:wrap;gap:18px;font-size:15px;font-weight:500}
 header.site .nm{font-family:'Fraunces',serif;font-weight:800;font-size:22px;color:var(--green);text-decoration:none}
 header.site a.back{font-size:15px;font-weight:500;text-decoration:none}
 .masthead{max-width:820px;margin:0 auto;padding:40px 24px 8px}
@@ -47,7 +49,8 @@ footer.site a{color:#fff}
 footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:600}
 @media(max-width:640px){body{font-size:17px}}
 </style></head><body>
-<header class="site"><a class="nm" href="../../index.html">Ega Guntara</a><a class="back" href="../../projects.html">← All projects</a></header>
+<div class="bar"><header class="site"><a class="nm" href="../../index.html">Ega Guntara</a>
+<nav><a href="../../projects.html">← All projects</a><a href="../../index.html#work">Journey</a><a href="../../index.html#contact">Contact</a><a href="../../assets/Ega-Guntara-CV.pdf">CV</a></nav></header></div>
 <div class="masthead"><p class="eyebrow">Project write-up</p><h1 class="title">One Second, Sixteen Lines, and Half a Pipeline</h1><p class="deck">Monitoring Voltage &amp; Current System, Version 1 — live line impedance against distance-relay protection zones</p></div><div class="summary"><div class="box"><div><b>Problem</b><p>A power plant needed live line impedance plotted against its protection zones within one second, on a pipeline where only half was visible to us.</p></div><div><b>What I built</b><p>As system architect, an MQTT pipeline from 16 sensors (64 data streams), impedance calculation with residual compensation, MongoDB storage and a Dash dashboard.</p></div><div><b>Result</b><p>Six impedances per line, editable protection zones, and 12 functional plus 9 negative test cases passed.</p></div></div></div><article><figure><img src="image.png" alt="monitoring voltage &amp; current system: version 1"><figcaption>Monitoring Voltage &amp; Current System: Version 1</figcaption></figure>
 <hr />
 <h2>Background</h2>

@@ -11,7 +11,9 @@ body{margin:0;background:var(--cream);color:var(--ink);font-family:'Work Sans',s
 img{max-width:100%;display:block}
 a{color:var(--green)} a:hover{color:var(--rust)}
 a:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
-header.site{max-width:1160px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.bar{position:sticky;top:0;z-index:50;background:rgba(243,245,244,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header.site{max-width:1160px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header.site nav{display:flex;flex-wrap:wrap;gap:18px;font-size:15px;font-weight:500}
 header.site .nm{font-family:'Fraunces',serif;font-weight:800;font-size:22px;color:var(--green);text-decoration:none}
 header.site a.back{font-size:15px;font-weight:500;text-decoration:none}
 .masthead{max-width:820px;margin:0 auto;padding:40px 24px 8px}
@@ -47,8 +49,9 @@ footer.site a{color:#fff}
 footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:600}
 @media(max-width:640px){body{font-size:17px}}
 </style></head><body>
-<header class="site"><a class="nm" href="../../index.html">Ega Guntara</a><a class="back" href="../../projects.html">← All projects</a></header>
-<div class="masthead"><p class="eyebrow">Project write-up</p><h1 class="title">A Sixty-Second Copy-Paste Window, and What It Was Costing Us</h1><p class="deck">Profile Management Assistant, Version 1 — an eUICC provisioning tool for M2M test teams</p></div><div class="summary"><div class="box"><div><b>Problem</b><p>Recovering a stuck eUICC took six manual steps across two tools against live SM-DP/SM-SR platforms, with a value that expired in 60 seconds, and the profile data lived on individual laptops.</p></div><div><b>What I built</b><p>A Django web application with a central data store, automated provisioning workflows, corporate LDAP login, three user roles, and a Jenkins/Docker deployment.</p></div><div><b>Result</b><p>The team's main eUICC tool. Recovery takes a few clicks, and new testers have all the profile data from their first day.</p></div></div></div><article><figure><div class="pending">Fig 1 — photo pending</div><figcaption>Profile Management Assistant: Version 1</figcaption></figure>
+<div class="bar"><header class="site"><a class="nm" href="../../index.html">Ega Guntara</a>
+<nav><a href="../../projects.html">← All projects</a><a href="../../index.html#work">Journey</a><a href="../../index.html#contact">Contact</a><a href="../../assets/Ega-Guntara-CV.pdf">CV</a></nav></header></div>
+<div class="masthead"><p class="eyebrow">Project write-up</p><h1 class="title">A Sixty-Second Copy-Paste Window, and What It Was Costing Us</h1><p class="deck">Profile Management Assistant, Version 1 — an eUICC provisioning tool for M2M test teams</p></div><div class="summary"><div class="box"><div><b>Problem</b><p>Recovering a stuck eUICC took six manual steps across two tools against live SM-DP/SM-SR platforms, with a value that expired in 60 seconds, and the profile data lived on individual laptops.</p></div><div><b>What I built</b><p>A Django web application with a central data store, automated provisioning workflows, corporate LDAP login, three user roles, and a Jenkins/Docker deployment.</p></div><div><b>Result</b><p>The team's main eUICC tool. Recovery takes a few clicks, and new testers have all the profile data from their first day.</p></div></div></div><article><figure><img src="pma-s1-profiles.png" alt="The profiles list"><figcaption>Profile Management Assistant: Version 1</figcaption></figure>
 <hr />
 <h2>Background</h2>
 <p>An eUICC in the field is supposed to agree with the server that manages it. Sometimes it doesn't.</p>
@@ -125,7 +128,6 @@ footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-rad
 </tr>
 </tbody>
 </table>
-<figure><div class="pending">Fig 2 — photo pending</div></figure>
 <h2>Stakeholders and Requirements</h2>
 <p>Before writing code, I wrote down who the tool was for and what it had to guarantee.</p>
 <p><strong>Stakeholders</strong></p>
@@ -152,7 +154,9 @@ footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-rad
 <h2>Workflow</h2>
 <p>The design follows directly from the two problems: the data was scattered, and the procedure was manual and timed.</p>
 <p>So the tool is two things stacked. Underneath, <strong>a store</strong>: ICCIDs, AIDs and their associated profile data, in one database, available to everyone who's allowed to see it. On top, <strong>a set of operations</strong> that use that store to talk to the live SM-DP and SM-SR — so the six-step recovery becomes a workflow the server executes rather than a checklist a human follows.</p>
-<figure><img src="pma-1-architecture.png" alt="System architecture"><figcaption>A store underneath, operations on top, two live platforms on the other side.</figcaption></figure>
+<figure><img src="pma-1-architecture.png" alt="System architecture"></figure>
+<figure><img src="pma-s2-register-profile.png" alt="Registering a profile"><figcaption>Registering a profile: the file is converted once and stored, so the next tester doesn't repeat it. Identifiers are masked here.</figcaption></figure>
+<p><em>A store underneath, operations on top, two live platforms on the other side.</em></p>
 <p>Four objectives:</p>
 <ol>
 <li><strong>Centralise the profile data</strong> so no tester is ever blocked waiting for a colleague to send a file.</li>
@@ -183,7 +187,10 @@ footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-rad
 <p>The case that matters most is the third one. <strong>If the tool cannot reach the SM-DP to check at all, it refuses to proceed.</strong></p>
 <p>That is a deliberate choice and it's worth defending, because the alternative is tempting. A tool that carries on when it can't verify feels more useful — it does what you asked instead of complaining about the network. But an operation against a production platform, issued without knowing the platform's current state, is a guess. Sometimes the guess is right. When it isn't, you have written to a live system on the basis of a belief you never checked.</p>
 <p>The rule I settled on: <strong>an operation that cannot see the system it is about to change does not run.</strong></p>
-<figure><img src="pma-3-guard.png" alt="The guard"><figcaption>Three ways to refuse. The middle one is the one worth having.</figcaption></figure>
+<figure><img src="pma-3-guard.png" alt="The guard"></figure>
+<figure><img src="pma-s3-euicc-list.png" alt="Registered eUICC"><figcaption>The eUICC list, checked live against the SM-SR. Identifiers are masked here.</figcaption></figure>
+<figure><img src="pma-s4-register-euicc.png" alt="Register an eUICC"><figcaption>Registration takes the XML once and extracts the EID from it.</figcaption></figure>
+<p><em>Three ways to refuse. The middle one is the one worth having.</em></p>
 <h3>Authentication and Roles</h3>
 <p>Login is <strong>corporate LDAP</strong> — the account a tester already has, no separate credential to issue or forget. That was a company requirement rather than a preference, and it's the right requirement: an internal tool with its own user table is a small identity system nobody wants to maintain.</p>
 <p>On top of that sits a three-role hierarchy:</p>
@@ -195,7 +202,8 @@ footer.site .cta{background:#fff;color:var(--green);padding:13px 22px;border-rad
 <p>The separation that matters is between <strong>using</strong> the data and <strong>adding</strong> it. Anyone on the team may need to recover a stuck ICCID; not everyone should be writing new records into the store that everyone else depends on. Centralising the data solved the availability problem, but it also created a single source of truth — and a single source of truth that anyone can edit is just a shared folder with extra steps.</p>
 <p>One implementation detail worth mentioning because it's a real edge case: roles have to be assignable to people who have <strong>never logged in</strong>. Django only knows about a user once they've authenticated, but a superadmin wants to grant access on Monday to someone starting on Wednesday. So role management — a section of the dashboard only superadmins see — looks up accounts in the directory and pre-creates them, rather than waiting for a first login that hasn't happened yet.</p>
 <figure><img src="pma-4-roles.png" alt="Role model"><figcaption>The line is drawn between using the shared data and adding to it.</figcaption></figure>
-<figure><div class="pending">Fig 5 — photo pending</div></figure>
+<figure><img src="pma-s5-login.png" alt="Sign in"><figcaption>Corporate directory login — the tool never holds a password of its own.</figcaption></figure>
+<figure><img src="pma-s6-login-failed.png" alt="A rejected sign-in"><figcaption>A failed sign-in says nothing about which half was wrong.</figcaption></figure>
 <h3>Building Inside the Walls</h3>
 <p>This is the part that took the most time, and it isn't a feature.</p>
 <p><strong>Every dependency has to come from the company's internal package mirror.</strong> Not PyPI. If a version isn't mirrored, you don't <code>pip install</code> it — you request it, and you wait.</p>

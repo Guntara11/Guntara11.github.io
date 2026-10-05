@@ -20,14 +20,62 @@ html{scroll-behavior:smooth}
 img{max-width:100%;display:block}
 .photo{width:100%;height:100%;object-fit:cover}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #A65A1B;outline-offset:2px}
+/* side rail navigation — sections stay one click away, no scrolling back up */
+.rail{position:fixed;top:0;left:0;bottom:0;width:236px;background:#FFFFFF;border-right:1px solid #DCE4DF;
+      padding:34px 22px;display:flex;flex-direction:column;gap:26px;z-index:60;overflow-y:auto}
+.rail .brand{text-decoration:none;display:block}
+.rail .nm{font-family:'Fraunces',serif;font-weight:800;font-size:21px;color:#1F4D3A;line-height:1.2;display:block}
+.rail .role{margin:6px 0 0;font-size:12.5px;line-height:1.45;color:#4A5A52;letter-spacing:.02em}
+.rail nav{display:flex;flex-direction:column;gap:2px}
+.rail nav a{display:block;padding:9px 12px;border-left:3px solid transparent;border-radius:0 6px 6px 0;
+            font-size:15px;font-weight:500;color:#34423B;text-decoration:none}
+.rail nav a:hover{background:#F3F5F4;color:#1F4D3A}
+.rail nav a.on{background:#F3F5F4;color:#1F4D3A;font-weight:600;border-left-color:#A65A1B}
+.rail .foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.rail .cv{display:inline-block;background:#1F4D3A;color:#FFFFFF;text-decoration:none;font-weight:600;
+          font-size:14px;padding:11px 16px;border-radius:999px;text-align:center}
+.rail .mini{font-size:13px;color:#4A5A52;text-decoration:none}
+.page{padding-left:236px}
+section{scroll-margin-top:24px}
+
+@media (max-width:1023px){
+  .rail{position:sticky;top:0;bottom:auto;width:auto;height:auto;flex-direction:row;flex-wrap:wrap;
+        align-items:center;gap:8px 16px;padding:12px 18px;border-right:0;border-bottom:1px solid #DCE4DF;
+        box-shadow:0 2px 10px rgba(24,34,29,.06)}
+  .rail .role{display:none}
+  .rail .brand{margin-right:auto}
+  .rail nav{order:2;flex-basis:100%;flex-direction:row;flex-wrap:wrap;gap:2px;margin:-2px 0 0}
+  .rail .foot{order:1}
+  .rail nav a{padding:6px 10px;border-left:0;border-bottom:2px solid transparent;border-radius:6px;font-size:14px}
+  .rail nav a.on{border-left:0;border-bottom-color:#A65A1B}
+  .rail .foot{margin-top:0;flex-direction:row;align-items:center;gap:12px;order:1}
+  .rail .mini{display:none}
+  .rail .cv{padding:8px 14px;font-size:13px}
+  .page{padding-left:0}
+  section{scroll-margin-top:86px}
+}
 </style>
 </head>
 <body>
 <div style="background: #F3F5F4; color: #18221D; font-family: 'Work Sans', sans-serif; min-height: 100vh">
-<header style="max-width: 1160px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
-<a href="index.html" style="font-family: 'Fraunces', serif; font-weight: 800; font-size: 22px; color: #1F4D3A; text-decoration: none">Ega Guntara</a>
-<a href="index.html" style="font-size: 15px; font-weight: 500">← Back to the story</a>
+<header class="rail">
+<a class="brand" href="index.html">
+<span class="nm">Ega Guntara</span>
+<span class="role">Senior QA Engineer · IoT &amp; Embedded<br/>Jakarta, Indonesia</span>
+</a>
+<nav id="railnav">
+<a href="index.html">← The story</a>
+<a href="#work">At work · 4</a>
+<a href="#field">In the field · 7</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+<div class="foot">
+<a class="cv" href="assets/Ega-Guntara-CV.pdf">Download CV</a>
+<a class="mini" href="https://www.linkedin.com/in/ega-guntara/">LinkedIn ↗</a>
+<a class="mini" href="https://github.com/Guntara11">GitHub ↗</a>
+</div>
 </header>
+<div class="page">
 <section style="max-width: 1160px; margin: 0 auto; padding: 64px 24px 56px">
 <p style="margin: 0 0 20px; font-size: 15px; font-weight: 600; color: #A65A1B; letter-spacing: 0.1em">ALL PROJECTS</p>
 <h1 style="margin: 0; font-family: 'Fraunces', serif; font-size: clamp(48px, 6.5vw, 96px); line-height: 1; font-weight: 600; letter-spacing: -0.02em; color: #1F4D3A; max-width: 980px">Every project started with <i style="font-weight: 400; color: #A65A1B">something that didn't work.</i></h1>
@@ -144,6 +192,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 </div>
 </div>
 </section>
+</div><!-- /.page -->
 </div>
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll('#railnav a'));
+  var map = {};
+  var targets = links.map(function (a) {
+    var el = document.querySelector(a.getAttribute('href'));
+    if (el) map[el.id] = a;
+    return el;
+  }).filter(Boolean);
+  if (!targets.length || !('IntersectionObserver' in window)) return;
+  var seen = {};
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { seen[e.target.id] = e.intersectionRatio; });
+    var best = null, top = 0;
+    Object.keys(seen).forEach(function (id) { if (seen[id] > top) { top = seen[id]; best = id; } });
+    links.forEach(function (a) { a.classList.remove('on'); });
+    if (best && map[best]) map[best].classList.add('on');
+  }, { threshold: [0, 0.15, 0.35, 0.6, 0.85], rootMargin: '-10% 0px -45% 0px' });
+  targets.forEach(function (t) { obs.observe(t); });
+})();
+</script>
 </body>
 </html>
